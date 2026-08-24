@@ -1,0 +1,100 @@
+{
+ "cohort": "GSE156728",
+ "description": "Pan-cancer CD4+CD8 atlas (Zheng et al. ...",
+ "registry": {
+  "treatment_class": "naive",
+  "icb_response_available": false,
+  "n_R": 0,
+  "n_NR": 0,
+  "sweep_status": "not swept: treatment-naive cohort",
+  "treatment_display": "treatment-naive",
+  "status": "verified"
+ },
+ "n_cells": 90441,
+ "tissue": [
+  {
+   "tissue": "Tumor",
+   "node_type": "no lymph node sampled",
+   "n_cells": 48987
+  },
+  {
+   "tissue": "Normal",
+   "node_type": "no lymph node sampled",
+   "n_cells": 39245
+  },
+  {
+   "tissue": "Blood",
+   "node_type": "no lymph node sampled",
+   "n_cells": 2209
+  }
+ ],
+ "discordance": {
+  "swap_algorithm": {
+   "containment": 0.712,
+   "n_pairs": 30
+  },
+  "swap_reference": {
+   "containment": 0.111,
+   "n_pairs": 6
+  }
+ },
+ "clinical": null,
+ "compartment": [
+  {
+   "reference": "Chu",
+   "compartment": "Blood",
+   "node_type": "no lymph node sampled",
+   "n_patients": 1,
+   "median_ratio": -0.12
+  },
+  {
+   "reference": "Chu",
+   "compartment": "Normal",
+   "node_type": "no lymph node sampled",
+   "n_patients": 24,
+   "median_ratio": -2.078
+  },
+  {
+   "reference": "Chu",
+   "compartment": "Tumor",
+   "node_type": "no lymph node sampled",
+   "n_patients": 42,
+   "median_ratio": -2.911
+  },
+  {
+   "reference": "ProjecTILs",
+   "compartment": "Normal",
+   "node_type": "no lymph node sampled",
+   "n_patients": 22,
+   "median_ratio": -2.38
+  },
+  {
+   "reference": "ProjecTILs",
+   "compartment": "Tumor",
+   "node_type": "no lymph node sampled",
+   "n_patients": 41,
+   "median_ratio": -3.707
+  },
+  {
+   "reference": "huARdb",
+   "compartment": "Blood",
+   "node_type": "no lymph node sampled",
+   "n_patients": 2,
+   "median_ratio": -1.616
+  },
+  {
+   "reference": "huARdb",
+   "compartment": "Normal",
+   "node_type": "no lymph node sampled",
+   "n_patients": 25,
+   "median_ratio": -4.858
+  },
+  {
+   "reference": "huARdb",
+   "compartment": "Tumor",
+   "node_type": "no lymph node sampled",
+   "n_patients": 42,
+   "median_ratio": -6.233
+  }
+ ]
+}

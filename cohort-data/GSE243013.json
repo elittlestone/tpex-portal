@@ -1,0 +1,74 @@
+{
+ "cohort": "GSE243013",
+ "description": "NSCLC anti-PD1 cohort (Liu et al. ...",
+ "registry": {
+  "treatment_class": "neoadjuvant_ICB_antiPD1",
+  "icb_response_available": true,
+  "n_R": 123,
+  "n_NR": 104,
+  "sweep_status": "in the sweep; result is null",
+  "treatment_display": "neoadjuvant anti-PD-1",
+  "status": "verified"
+ },
+ "n_cells": 269232,
+ "tissue": null,
+ "discordance": {
+  "swap_algorithm": {
+   "containment": 0.577,
+   "n_pairs": 30
+  },
+  "swap_reference": {
+   "containment": 0.066,
+   "n_pairs": 6
+  }
+ },
+ "clinical": [
+  {
+   "reference": "ProjecTILs",
+   "n_R": 123,
+   "n_NR": 104,
+   "ratio_auc": 0.615,
+   "ratio_p": 0.003,
+   "ratio_q": 0.008,
+   "direction": "R-higher"
+  },
+  {
+   "reference": "Chu",
+   "n_R": 123,
+   "n_NR": 104,
+   "ratio_auc": 0.553,
+   "ratio_p": 0.167,
+   "ratio_q": 0.167,
+   "direction": "R-higher"
+  },
+  {
+   "reference": "huARdb",
+   "n_R": 123,
+   "n_NR": 104,
+   "ratio_auc": 0.661,
+   "ratio_p": 0.0,
+   "ratio_q": 0.0,
+   "direction": "R-higher",
+   "ms_note": "Reported but NOT interpreted in the manuscript: 206 of these 227 patients carry no cell of this pole, so the ratio is a function of its denominator rather than a progenitor measure. "
+  },
+  {
+   "reference": "huARdb Tex-Tpex",
+   "n_R": 123,
+   "n_NR": 104,
+   "ratio_auc": 0.65,
+   "ratio_p": 0.0,
+   "ratio_q": 0.0,
+   "direction": "R-higher"
+  },
+  {
+   "reference": "author-Texp",
+   "n_R": 119,
+   "n_NR": 96,
+   "ratio_auc": 0.597,
+   "ratio_p": 0.014,
+   "ratio_q": 0.026,
+   "direction": "R-higher"
+  }
+ ],
+ "compartment": null
+}

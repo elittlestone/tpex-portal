@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CD8 TILs – Tpex Data Portal</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0e6fc86b4e005df7d4d9e3acf22ac3ce.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-dcd9330230897f011e17bf2c7ab98600.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0e6fc86b4e005df7d4d9e3acf22ac3ce.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e362895615cd8c558fe5e7cd1dad94cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e362895615cd8c558fe5e7cd1dad94cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e362895615cd8c558fe5e7cd1dad94cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="../site_libs/quarto-dashboard/stickythead.js"></script>
+
+
+
+<script src="../site_libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="../site_libs/quarto-dashboard/components.js"></script>
+
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../tpex.css">
+</head>
+
+<body class="quarto-dashboard nav-fixed dashboard-fill dashboard-sidebar fullcontent quarto-light">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Tpex Data Portal</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../gallery.html"> 
+<span class="menu-text">Figures</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-explore" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Explore</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-explore">    
+        <li>
+    <a class="dropdown-item" href="../definitions.html">
+ <span class="dropdown-text">Tpex definitions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../agreement.html">
+ <span class="dropdown-text">Which choice moves the answer</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../atlases.html">
+ <span class="dropdown-text">Reference atlases</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cohorts.html">
+ <span class="dropdown-text">Query cohorts</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../build-analysis.html"> 
+<span class="menu-text">Build an analysis</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler hidden" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">
+
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">CD8 TILs</a></div>
+        
+        
+      </div>
+    </div>
+</div>
+</nav>
+</header></header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill dashboard-sidebar-container">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+<!-- main -->
+
+<div class="cell hidden bslib-grid-item html-fill-item">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="20" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 19;"><span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>meta   <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../atlas-data/cd8_tils.json"</span>)<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>umap   <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../atlas-data/cd8_tils_umap.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({<span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span>})</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>hexes  <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../atlas-data/cd8_tils_markers.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({<span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span>})</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>stateNames <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../atlas-data/cd8_tils_states.json"</span>)<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">// Ordered to match stateNames. Poles carry their locked config colour; see state_colours().</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>stateColours <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../atlas-data/cd8_tils_state_colours.json"</span>)<span class="op">.</span><span class="fu">json</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell hidden bslib-grid-item html-fill-item">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="33" data-source-offset="-194"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 32;"><span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>pts <span class="op">=</span> {</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> text <span class="op">=</span> <span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"../atlas-data/cd8_tils_umap_full.csv"</span>)<span class="op">.</span><span class="fu">text</span>()<span class="op">;</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ★ NEWLINE VIA fromCharCode, NOT AN ESCAPE, AND THE COMMENT ITSELF PROVED IT. A backslash-n written in this</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">// template is an ESCAPE IN THE PYTHON SOURCE: Python resolves it to a real newline when it</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="co">// parses the string literal, so the .qmd received an actual line break inside a JS string.</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="co">// That split the statement across lines, broke the cell, and made Quarto render the entire</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="co">// block as literal text instead of executing it -- which looks like a Quarto echo problem</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">// and is not one. No escape sequence means nothing left to collapse.</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> NL <span class="op">=</span> <span class="bu">String</span><span class="op">.</span><span class="fu">fromCharCode</span>(<span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> body <span class="op">=</span> text<span class="op">.</span><span class="fu">slice</span>(text<span class="op">.</span><span class="fu">indexOf</span>(NL) <span class="op">+</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rows <span class="op">=</span> body<span class="op">.</span><span class="fu">split</span>(NL)<span class="op">;</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> rows[rows<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>] <span class="op">===</span> <span class="st">""</span> <span class="op">?</span> rows<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span> <span class="op">:</span> rows<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> x <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float32Array</span>(n)<span class="op">,</span> y <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float32Array</span>(n)<span class="op">,</span> s <span class="op">=</span> <span class="kw">new</span> <span class="bu">Uint8Array</span>(n)<span class="op">;</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> line <span class="op">=</span> rows[i]<span class="op">;</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> a <span class="op">=</span> line<span class="op">.</span><span class="fu">indexOf</span>(<span class="st">","</span>)<span class="op">,</span> b <span class="op">=</span> line<span class="op">.</span><span class="fu">indexOf</span>(<span class="st">","</span><span class="op">,</span> a <span class="op">+</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    x[i] <span class="op">=</span> <span class="op">+</span>line<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> a)<span class="op">;</span> y[i] <span class="op">=</span> <span class="op">+</span>line<span class="op">.</span><span class="fu">slice</span>(a <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> b)<span class="op">;</span> s[i] <span class="op">=</span> <span class="op">+</span>line<span class="op">.</span><span class="fu">slice</span>(b <span class="op">+</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {x<span class="op">,</span> y<span class="op">,</span> s<span class="op">,</span> n}<span class="op">;</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ DRAW ORDER IS BY RARITY, COMMONEST FIRST. This is the whole reason the point view earns its</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="co">// place next to the binned one: the modal hex map hides rare states entirely (huARdb's Tex-Tpex is</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co">// the most common state in ONE hexagon), whereas painting rare states LAST puts them on top of the</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="co">// dense ones instead of under them.</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>drawOrder <span class="op">=</span> {</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> counts <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>()<span class="op">;</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> pts<span class="op">.</span><span class="at">n</span><span class="op">;</span> i<span class="op">++</span>) counts<span class="op">.</span><span class="fu">set</span>(pts<span class="op">.</span><span class="at">s</span>[i]<span class="op">,</span> (counts<span class="op">.</span><span class="fu">get</span>(pts<span class="op">.</span><span class="at">s</span>[i]) <span class="op">||</span> <span class="dv">0</span>) <span class="op">+</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [<span class="op">...</span>counts<span class="op">.</span><span class="fu">entries</span>()]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> b[<span class="dv">1</span>] <span class="op">-</span> a[<span class="dv">1</span>])<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d[<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="bslib-sidebar-layout html-fill-item html-fill-container" data-bslib-sidebar-open="desktop" data-bslib-sidebar-init="true" style=" --bslib-sidebar-width: 23%" data-bslib-sidebar-border="false" data-bslib-sidebar-border-radius="false"><div class="main html-fill-container html-fill-item"><div class="sidebar-content html-fill-item html-fill-container">
+<div class="bslib-grid html-fill-item html-fill-container" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="bslib-grid html-fill-item html-fill-container" data-height="62%" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="cell hidden html-fill-item html-fill-container">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb10" data-startfrom="278" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 277;"><span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ EVERY CELL, DRAWN INDIVIDUALLY. No sampling and no binning: 10,045 points straight onto a</span></span>
+<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a><span class="co">// 2D canvas. A device-pixel-ratio backing store keeps it sharp on retina displays without</span></span>
+<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a><span class="co">// multiplying the work, since the cost here is fill calls rather than DOM.</span></span>
+<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ NO TOOLTIP ON THIS VIEW, DELIBERATELY. Hit-testing a million points needs a quadtree, and the</span></span>
+<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a><span class="co">// only per-cell attribute is state, which the legend already gives. The "sampled cells" view keeps</span></span>
+<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a><span class="co">// Plot's tooltips for anyone who wants to interrogate individual points.</span></span>
+<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ A FUNCTION, NOT A CELL HOLDING A DOM NODE. As a value cell this rendered an object-inspector</span></span>
+<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a><span class="co">// dump instead of the map in the default view. `//| output: false` only adds class="hidden" to the</span></span>
+<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a><span class="co">// wrapper; the runtime still attaches an Inspector to this cell and parents the canvas there</span></span>
+<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a><span class="co">// FIRST. The consuming cell then finds value.parentNode !== its own node and falls back to</span></span>
+<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a><span class="co">// inspect(value), printing an object-inspector dump. Returning a builder means each consumer gets a</span></span>
+<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a><span class="co">// fresh node that nothing else has adopted.</span></span>
+<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a>canvasMap <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> W <span class="op">=</span> <span class="dv">720</span><span class="op">,</span> H <span class="op">=</span> <span class="dv">440</span><span class="op">,</span> PAD <span class="op">=</span> <span class="dv">8</span><span class="op">,</span> R <span class="op">=</span> <span class="fl">0.8</span><span class="op">;</span></span>
+<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> dpr <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="bu">window</span><span class="op">.</span><span class="at">devicePixelRatio</span> <span class="op">||</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb10-293"><a href="#cb10-293" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> wrap <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div style="display:flex;gap:12px;align-items:flex-start"&gt;&lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cv <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;canvas width=</span><span class="sc">${</span>W <span class="op">*</span> dpr<span class="sc">}</span><span class="vs"> height=</span><span class="sc">${</span>H <span class="op">*</span> dpr<span class="sc">}</span></span>
+<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a><span class="vs">                    style="width:</span><span class="sc">${</span>W<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>H<span class="sc">}</span><span class="vs">px"&gt;&lt;/canvas&gt;`</span><span class="op">;</span></span>
+<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ctx <span class="op">=</span> cv<span class="op">.</span><span class="fu">getContext</span>(<span class="st">"2d"</span>)<span class="op">;</span></span>
+<span id="cb10-297"><a href="#cb10-297" aria-hidden="true" tabindex="-1"></a>  ctx<span class="op">.</span><span class="fu">scale</span>(dpr<span class="op">,</span> dpr)<span class="op">;</span></span>
+<span id="cb10-298"><a href="#cb10-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> x0 <span class="op">=</span> <span class="kw">Infinity</span><span class="op">,</span> x1 <span class="op">=</span> <span class="op">-</span><span class="kw">Infinity</span><span class="op">,</span> y0 <span class="op">=</span> <span class="kw">Infinity</span><span class="op">,</span> y1 <span class="op">=</span> <span class="op">-</span><span class="kw">Infinity</span><span class="op">;</span></span>
+<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> pts<span class="op">.</span><span class="at">n</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (pts<span class="op">.</span><span class="at">x</span>[i] <span class="op">&lt;</span> x0) x0 <span class="op">=</span> pts<span class="op">.</span><span class="at">x</span>[i]<span class="op">;</span> <span class="cf">if</span> (pts<span class="op">.</span><span class="at">x</span>[i] <span class="op">&gt;</span> x1) x1 <span class="op">=</span> pts<span class="op">.</span><span class="at">x</span>[i]<span class="op">;</span></span>
+<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (pts<span class="op">.</span><span class="at">y</span>[i] <span class="op">&lt;</span> y0) y0 <span class="op">=</span> pts<span class="op">.</span><span class="at">y</span>[i]<span class="op">;</span> <span class="cf">if</span> (pts<span class="op">.</span><span class="at">y</span>[i] <span class="op">&gt;</span> y1) y1 <span class="op">=</span> pts<span class="op">.</span><span class="at">y</span>[i]<span class="op">;</span></span>
+<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sx <span class="op">=</span> (W <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> PAD) <span class="op">/</span> (x1 <span class="op">-</span> x0)<span class="op">,</span> sy <span class="op">=</span> (H <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> PAD) <span class="op">/</span> (y1 <span class="op">-</span> y0)<span class="op">;</span></span>
+<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> k <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(sx<span class="op">,</span> sy)<span class="op">;</span></span>
+<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ox <span class="op">=</span> PAD <span class="op">+</span> ((W <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> PAD) <span class="op">-</span> (x1 <span class="op">-</span> x0) <span class="op">*</span> k) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> oy <span class="op">=</span> PAD <span class="op">+</span> ((H <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> PAD) <span class="op">-</span> (y1 <span class="op">-</span> y0) <span class="op">*</span> k) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> colour <span class="op">=</span> i <span class="kw">=&gt;</span> stateColours[i]<span class="op">;</span>   <span class="co">// NOT tableau10[i%10]: that wrapped 9 of 19 states</span></span>
+<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a>  ctx<span class="op">.</span><span class="at">globalAlpha</span> <span class="op">=</span> <span class="fl">0.55</span><span class="op">;</span></span>
+<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> code <span class="kw">of</span> drawOrder) {            <span class="co">// commonest first, so rare states land on top</span></span>
+<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a>    ctx<span class="op">.</span><span class="at">fillStyle</span> <span class="op">=</span> <span class="fu">colour</span>(code)<span class="op">;</span></span>
+<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a>    ctx<span class="op">.</span><span class="fu">beginPath</span>()<span class="op">;</span></span>
+<span id="cb10-314"><a href="#cb10-314" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> pts<span class="op">.</span><span class="at">n</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (pts<span class="op">.</span><span class="at">s</span>[i] <span class="op">!==</span> code) <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> px <span class="op">=</span> ox <span class="op">+</span> (pts<span class="op">.</span><span class="at">x</span>[i] <span class="op">-</span> x0) <span class="op">*</span> k<span class="op">,</span> py <span class="op">=</span> H <span class="op">-</span> (oy <span class="op">+</span> (pts<span class="op">.</span><span class="at">y</span>[i] <span class="op">-</span> y0) <span class="op">*</span> k)<span class="op">;</span></span>
+<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a>      ctx<span class="op">.</span><span class="fu">moveTo</span>(px<span class="op">,</span> py)<span class="op">;</span> ctx<span class="op">.</span><span class="fu">arc</span>(px<span class="op">,</span> py<span class="op">,</span> R<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="fl">6.2832</span>)<span class="op">;</span></span>
+<span id="cb10-318"><a href="#cb10-318" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-319"><a href="#cb10-319" aria-hidden="true" tabindex="-1"></a>    ctx<span class="op">.</span><span class="fu">fill</span>()<span class="op">;</span></span>
+<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> legend <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div style="font-size:11px;line-height:1.5;max-width:180px"&gt;</span></span>
+<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>drawOrder<span class="op">.</span><span class="fu">map</span>(code <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;div&gt;&lt;span style="display:inline-block;width:.65em;height:.65em;</span></span>
+<span id="cb10-324"><a href="#cb10-324" aria-hidden="true" tabindex="-1"></a><span class="vs">      background:</span><span class="sc">${</span><span class="fu">colour</span>(code)<span class="sc">}</span><span class="vs">;margin-right:.4em;border-radius:2px"&gt;&lt;/span&gt;</span><span class="sc">${</span>stateNames[code]<span class="sc">}</span><span class="vs">&lt;/div&gt;`</span>)<span class="sc">}</span></span>
+<span id="cb10-325"><a href="#cb10-325" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a>  wrap<span class="op">.</span><span class="fu">append</span>(cv<span class="op">,</span> legend)<span class="op">;</span></span>
+<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> wrap<span class="op">;</span></span>
+<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display hidden html-fill-item html-fill-container">
+<div id="ojs-cell-9" data-nodetype="declaration" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<div class="card cell bslib-card html-fill-container html-fill-item" data-title="States" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title html-fill-item html-fill-container"><span style="display: inline">
+States
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb11" data-startfrom="334" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 333;"><span id="cb11-334"><a href="#cb11-334" aria-hidden="true" tabindex="-1"></a>statemode <span class="op">===</span> <span class="st">"all cells (points)"</span></span>
+<span id="cb11-335"><a href="#cb11-335" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> <span class="fu">canvasMap</span>()</span>
+<span id="cb11-336"><a href="#cb11-336" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-337"><a href="#cb11-337" aria-hidden="true" tabindex="-1"></a>      <span class="dt">height</span><span class="op">:</span> <span class="dv">440</span><span class="op">,</span> <span class="dt">margin</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span> <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">175</span><span class="op">,</span></span>
+<span id="cb11-338"><a href="#cb11-338" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb11-339"><a href="#cb11-339" aria-hidden="true" tabindex="-1"></a>      <span class="co">// ★ EXPLICIT domain+range IS REQUIRED. Plot's default categorical scheme is tableau10, so</span></span>
+<span id="cb11-340"><a href="#cb11-340" aria-hidden="true" tabindex="-1"></a>      <span class="co">// leaving this implicit reproduces the same 19-onto-10 collision the canvas had.</span></span>
+<span id="cb11-341"><a href="#cb11-341" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">columns</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"state"</span><span class="op">,</span></span>
+<span id="cb11-342"><a href="#cb11-342" aria-hidden="true" tabindex="-1"></a>               <span class="dt">domain</span><span class="op">:</span> stateNames<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> stateColours}<span class="op">,</span></span>
+<span id="cb11-343"><a href="#cb11-343" aria-hidden="true" tabindex="-1"></a>      <span class="dt">marks</span><span class="op">:</span> [ statemode <span class="op">===</span> <span class="st">"sampled cells"</span></span>
+<span id="cb11-344"><a href="#cb11-344" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> Plot<span class="op">.</span><span class="fu">dot</span>(umap<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"UMAP_1"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"UMAP_2"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"state"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="fl">1.1</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.75</span>})</span>
+<span id="cb11-345"><a href="#cb11-345" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ★ ALL cells, binned. fillOpacity carries PURITY so boundary bins recede: a hex that is</span></span>
+<span id="cb11-346"><a href="#cb11-346" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 51% one state must not read as confidently as one that is 100%.</span></span>
+<span id="cb11-347"><a href="#cb11-347" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> Plot<span class="op">.</span><span class="fu">dot</span>(hexes<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"hex_x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"hex_y"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"state"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="fl">3.2</span><span class="op">,</span> <span class="dt">symbol</span><span class="op">:</span> <span class="st">"hexagon"</span><span class="op">,</span></span>
+<span id="cb11-348"><a href="#cb11-348" aria-hidden="true" tabindex="-1"></a>                           <span class="dt">stroke</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="fl">0.25</span> <span class="op">+</span> <span class="fl">0.75</span> <span class="op">*</span> d<span class="op">.</span><span class="at">state_purity</span>})</span>
+<span id="cb11-349"><a href="#cb11-349" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb11-350"><a href="#cb11-350" aria-hidden="true" tabindex="-1"></a>    })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-10" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div class="card cell bslib-card html-fill-container html-fill-item" data-title="Marker expression" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title html-fill-item html-fill-container"><span style="display: inline">
+Marker expression
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb12" data-startfrom="356" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 355;"><span id="cb12-356"><a href="#cb12-356" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>geneA <span class="op">?</span> <span class="fu">md</span><span class="vs">`Enter a gene above, or pick one of the curated markers.`</span></span>
+<span id="cb12-357"><a href="#cb12-357" aria-hidden="true" tabindex="-1"></a><span class="op">:</span> valsA <span class="op">===</span> <span class="kw">null</span> <span class="op">?</span> <span class="fu">md</span><span class="vs">`**</span><span class="sc">${</span>geneA<span class="sc">}</span><span class="vs"> is not available on this map.** See the note in the sidebar.`</span></span>
+<span id="cb12-358"><a href="#cb12-358" aria-hidden="true" tabindex="-1"></a><span class="op">:</span> valsA<span class="op">.</span><span class="at">empty</span> <span class="op">?</span> <span class="fu">md</span><span class="vs">`**</span><span class="sc">${</span>geneA<span class="sc">}</span><span class="vs"> is not detected in this atlas.** It is in the shared gene set, but</span></span>
+<span id="cb12-359"><a href="#cb12-359" aria-hidden="true" tabindex="-1"></a><span class="vs">    no hexagon carries a non-zero mean, so there is nothing to colour. Drawing it would produce a</span></span>
+<span id="cb12-360"><a href="#cb12-360" aria-hidden="true" tabindex="-1"></a><span class="vs">    uniformly shaded map that reads as moderate expression everywhere.`</span></span>
+<span id="cb12-361"><a href="#cb12-361" aria-hidden="true" tabindex="-1"></a><span class="op">:</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb12-362"><a href="#cb12-362" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">470</span><span class="op">,</span> <span class="dt">margin</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span></span>
+<span id="cb12-363"><a href="#cb12-363" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb12-364"><a href="#cb12-364" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">scheme</span><span class="op">:</span> <span class="st">"YlGnBu"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> valsA<span class="op">.</span><span class="at">p99</span>]<span class="op">,</span></span>
+<span id="cb12-365"><a href="#cb12-365" aria-hidden="true" tabindex="-1"></a>           <span class="dt">label</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>geneA<span class="sc">}</span><span class="vs"> mean lognorm (ramp top = 99th pct)`</span>}<span class="op">,</span></span>
+<span id="cb12-366"><a href="#cb12-366" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">dot</span>(hexes<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">_v</span><span class="op">:</span> valsA<span class="op">.</span><span class="at">v</span>[i]}))<span class="op">,</span></span>
+<span id="cb12-367"><a href="#cb12-367" aria-hidden="true" tabindex="-1"></a>                   {<span class="dt">x</span><span class="op">:</span> <span class="st">"hex_x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"hex_y"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"_v"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="fl">3.2</span><span class="op">,</span></span>
+<span id="cb12-368"><a href="#cb12-368" aria-hidden="true" tabindex="-1"></a>                     <span class="dt">symbol</span><span class="op">:</span> <span class="st">"hexagon"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb12-369"><a href="#cb12-369" aria-hidden="true" tabindex="-1"></a>                     <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">channels</span><span class="op">:</span> {<span class="dt">state</span><span class="op">:</span> <span class="st">"state"</span><span class="op">,</span> <span class="dt">cells</span><span class="op">:</span> <span class="st">"n_cells"</span>}})]</span>
+<span id="cb12-370"><a href="#cb12-370" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-11" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div class="card cell bslib-card html-fill-container html-fill-item" data-title="Second gene" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title html-fill-item html-fill-container"><span style="display: inline">
+Second gene
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb13" data-startfrom="376" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 375;"><span id="cb13-376"><a href="#cb13-376" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ TWO INDEPENDENT RAMPS, AND THE CARD SAYS SO. SPICA's compare view scales each gene separately</span></span>
+<span id="cb13-377"><a href="#cb13-377" aria-hidden="true" tabindex="-1"></a><span class="co">// too, which is right (a housekeeping gene would otherwise flatten a cytokine), but it means the</span></span>
+<span id="cb13-378"><a href="#cb13-378" aria-hidden="true" tabindex="-1"></a><span class="co">// two panels' colours are NOT comparable to each other. Only the spatial pattern is.</span></span>
+<span id="cb13-379"><a href="#cb13-379" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>geneB <span class="op">?</span> <span class="fu">md</span><span class="vs">`Enter a second gene to compare patterns.`</span></span>
+<span id="cb13-380"><a href="#cb13-380" aria-hidden="true" tabindex="-1"></a><span class="op">:</span> valsB <span class="op">===</span> <span class="kw">null</span> <span class="op">?</span> <span class="fu">geneNote</span>(geneB<span class="op">,</span> valsB)</span>
+<span id="cb13-381"><a href="#cb13-381" aria-hidden="true" tabindex="-1"></a><span class="op">:</span> valsB<span class="op">.</span><span class="at">empty</span> <span class="op">?</span> <span class="fu">md</span><span class="vs">`**</span><span class="sc">${</span>geneB<span class="sc">}</span><span class="vs"> is not detected in this atlas.**`</span></span>
+<span id="cb13-382"><a href="#cb13-382" aria-hidden="true" tabindex="-1"></a><span class="op">:</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb13-383"><a href="#cb13-383" aria-hidden="true" tabindex="-1"></a>      <span class="dt">height</span><span class="op">:</span> <span class="dv">470</span><span class="op">,</span> <span class="dt">margin</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span></span>
+<span id="cb13-384"><a href="#cb13-384" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb13-385"><a href="#cb13-385" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">scheme</span><span class="op">:</span> <span class="st">"YlOrRd"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> valsB<span class="op">.</span><span class="at">p99</span>]<span class="op">,</span></span>
+<span id="cb13-386"><a href="#cb13-386" aria-hidden="true" tabindex="-1"></a>               <span class="dt">label</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>geneB<span class="sc">}</span><span class="vs"> mean lognorm (own scale)`</span>}<span class="op">,</span></span>
+<span id="cb13-387"><a href="#cb13-387" aria-hidden="true" tabindex="-1"></a>      <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">dot</span>(hexes<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">_v</span><span class="op">:</span> valsB<span class="op">.</span><span class="at">v</span>[i]}))<span class="op">,</span></span>
+<span id="cb13-388"><a href="#cb13-388" aria-hidden="true" tabindex="-1"></a>                       {<span class="dt">x</span><span class="op">:</span> <span class="st">"hex_x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"hex_y"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"_v"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="fl">3.2</span><span class="op">,</span></span>
+<span id="cb13-389"><a href="#cb13-389" aria-hidden="true" tabindex="-1"></a>                         <span class="dt">symbol</span><span class="op">:</span> <span class="st">"hexagon"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb13-390"><a href="#cb13-390" aria-hidden="true" tabindex="-1"></a>                         <span class="dt">channels</span><span class="op">:</span> {<span class="dt">state</span><span class="op">:</span> <span class="st">"state"</span><span class="op">,</span> <span class="dt">cells</span><span class="op">:</span> <span class="st">"n_cells"</span>}})]</span>
+<span id="cb13-391"><a href="#cb13-391" aria-hidden="true" tabindex="-1"></a>    })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-12" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div class="card cell bslib-card html-fill-container html-fill-item" data-title="Expression by state" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title html-fill-item html-fill-container"><span style="display: inline">
+Expression by state
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb14" data-startfrom="397" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 396;"><span id="cb14-397"><a href="#cb14-397" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ MEAN AND DETECTION RATE, NOT A VIOLIN, and computed on CELLS rather than on the hexagons.</span></span>
+<span id="cb14-398"><a href="#cb14-398" aria-hidden="true" tabindex="-1"></a><span class="co">// Single-cell expression is zero-inflated, so a violin is dominated by the zero spike and its</span></span>
+<span id="cb14-399"><a href="#cb14-399" aria-hidden="true" tabindex="-1"></a><span class="co">// median reads 0 for gene after gene; a summary over hexagons would additionally weight states by</span></span>
+<span id="cb14-400"><a href="#cb14-400" aria-hidden="true" tabindex="-1"></a><span class="co">// how many bins they occupy rather than how many cells they have. Dot area is the fraction of the</span></span>
+<span id="cb14-401"><a href="#cb14-401" aria-hidden="true" tabindex="-1"></a><span class="co">// state's cells with any detected transcript, which is what makes a low mean readable as "few</span></span>
+<span id="cb14-402"><a href="#cb14-402" aria-hidden="true" tabindex="-1"></a><span class="co">// cells express it" rather than "all express it weakly".</span></span>
+<span id="cb14-403"><a href="#cb14-403" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb14-404"><a href="#cb14-404" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> g <span class="op">=</span> geneA<span class="op">;</span></span>
+<span id="cb14-405"><a href="#cb14-405" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ★ EVERY BRANCH SAYS SOMETHING. Returning md`` gave a TITLED, COMPLETELY BLANK card whenever</span></span>
+<span id="cb14-406"><a href="#cb14-406" aria-hidden="true" tabindex="-1"></a>  <span class="co">// nothing was entered or the gene was outside the shared set, while the map card beside it</span></span>
+<span id="cb14-407"><a href="#cb14-407" aria-hidden="true" tabindex="-1"></a>  <span class="co">// printed a message for the same input. A blank card reads as a broken page.</span></span>
+<span id="cb14-408"><a href="#cb14-408" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>g) <span class="cf">return</span> <span class="fu">md</span><span class="vs">`Enter a gene to see how it is distributed across this atlas's states.`</span><span class="op">;</span></span>
+<span id="cb14-409"><a href="#cb14-409" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> e <span class="op">=</span> geneIdx<span class="op">.</span><span class="at">genes</span>[g]<span class="op">;</span></span>
+<span id="cb14-410"><a href="#cb14-410" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>e) <span class="cf">return</span> <span class="fu">md</span><span class="vs">`**</span><span class="sc">${</span>g<span class="sc">}</span><span class="vs"> is not on this map**, so there is no per-state summary. The note in the</span></span>
+<span id="cb14-411"><a href="#cb14-411" aria-hidden="true" tabindex="-1"></a><span class="vs">    sidebar explains which references carry it.`</span><span class="op">;</span></span>
+<span id="cb14-412"><a href="#cb14-412" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ★ THE SAME ZERO-WIDTH DOMAIN TRAP AS THE MAP, AND IT WAS FIXED ONLY THERE. With p99 == 0 the</span></span>
+<span id="cb14-413"><a href="#cb14-413" aria-hidden="true" tabindex="-1"></a>  <span class="co">// colour domain is [0, 0]; d3 maps every value to t=0.5, so an UNDETECTED gene drew a mid-ramp</span></span>
+<span id="cb14-414"><a href="#cb14-414" aria-hidden="true" tabindex="-1"></a>  <span class="co">// teal dot and a legend reading 0.000000 at both ends.</span></span>
+<span id="cb14-415"><a href="#cb14-415" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (e<span class="op">.</span><span class="at">p99</span> <span class="op">&lt;=</span> <span class="dv">0</span>) <span class="cf">return</span> <span class="fu">md</span><span class="vs">`**</span><span class="sc">${</span>g<span class="sc">}</span><span class="vs"> is not detected in this atlas** (</span><span class="sc">${</span></span>
+<span id="cb14-416"><a href="#cb14-416" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">100</span> <span class="op">*</span> e<span class="op">.</span><span class="at">detect</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% of cells), so there is no distribution to summarise.`</span><span class="op">;</span></span>
+<span id="cb14-417"><a href="#cb14-417" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> S <span class="op">=</span> geneIdx<span class="op">.</span><span class="at">states</span><span class="op">,</span> nS <span class="op">=</span> S<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb14-418"><a href="#cb14-418" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> gi <span class="op">=</span> geneIdx<span class="op">.</span><span class="at">gene_order</span><span class="op">.</span><span class="fu">indexOf</span>(g)<span class="op">;</span></span>
+<span id="cb14-419"><a href="#cb14-419" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (gi <span class="op">&lt;</span> <span class="dv">0</span>) <span class="cf">return</span> <span class="fu">md</span><span class="vs">`**</span><span class="sc">${</span>g<span class="sc">}</span><span class="vs"> has no per-state summary in this atlas**, so there is nothing to</span></span>
+<span id="cb14-420"><a href="#cb14-420" aria-hidden="true" tabindex="-1"></a><span class="vs">    show here.`</span><span class="op">;</span></span>
+<span id="cb14-421"><a href="#cb14-421" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rows <span class="op">=</span> S<span class="op">.</span><span class="fu">map</span>((st<span class="op">,</span> j) <span class="kw">=&gt;</span> ({</span>
+<span id="cb14-422"><a href="#cb14-422" aria-hidden="true" tabindex="-1"></a>    <span class="dt">state</span><span class="op">:</span> st<span class="op">,</span></span>
+<span id="cb14-423"><a href="#cb14-423" aria-hidden="true" tabindex="-1"></a>    <span class="dt">mean</span><span class="op">:</span> byState[(gi <span class="op">*</span> nS <span class="op">+</span> j) <span class="op">*</span> <span class="dv">2</span>] <span class="op">/</span> <span class="dv">255</span> <span class="op">*</span> e<span class="op">.</span><span class="at">p99</span><span class="op">,</span></span>
+<span id="cb14-424"><a href="#cb14-424" aria-hidden="true" tabindex="-1"></a>    <span class="dt">detect</span><span class="op">:</span> byState[(gi <span class="op">*</span> nS <span class="op">+</span> j) <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>] <span class="op">/</span> <span class="dv">255</span><span class="op">,</span></span>
+<span id="cb14-425"><a href="#cb14-425" aria-hidden="true" tabindex="-1"></a>    <span class="dt">n</span><span class="op">:</span> geneIdx<span class="op">.</span><span class="at">state_n</span>[j]</span>
+<span id="cb14-426"><a href="#cb14-426" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb14-427"><a href="#cb14-427" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb14-428"><a href="#cb14-428" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">40</span> <span class="op">+</span> <span class="dv">22</span> <span class="op">*</span> nS<span class="op">,</span> <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">190</span><span class="op">,</span> <span class="dt">width</span><span class="op">:</span> <span class="dv">620</span><span class="op">,</span></span>
+<span id="cb14-429"><a href="#cb14-429" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>g<span class="sc">}</span><span class="vs"> mean lognorm`</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb14-430"><a href="#cb14-430" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> rows<span class="op">.</span><span class="fu">slice</span>()<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> b<span class="op">.</span><span class="at">mean</span> <span class="op">-</span> a<span class="op">.</span><span class="at">mean</span>)<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">state</span>)}<span class="op">,</span></span>
+<span id="cb14-431"><a href="#cb14-431" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ★ range STARTS AT 0 so the area really is proportional to the detection fraction. With a</span></span>
+<span id="cb14-432"><a href="#cb14-432" aria-hidden="true" tabindex="-1"></a>    <span class="co">// floor of 2 a gene detected in ZERO cells still drew a visible dot, and the area ratios ran</span></span>
+<span id="cb14-433"><a href="#cb14-433" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 0.05 / 0.22 / 0.60 / 1.00 against the 0 / 0.10 / 0.50 / 1.00 the caption claims.</span></span>
+<span id="cb14-434"><a href="#cb14-434" aria-hidden="true" tabindex="-1"></a>    <span class="dt">r</span><span class="op">:</span> {<span class="dt">range</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">9</span>]<span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]}<span class="op">,</span></span>
+<span id="cb14-435"><a href="#cb14-435" aria-hidden="true" tabindex="-1"></a>    <span class="dt">color</span><span class="op">:</span> {<span class="dt">scheme</span><span class="op">:</span> <span class="st">"YlGnBu"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> e<span class="op">.</span><span class="at">p99</span>]<span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"mean"</span>}<span class="op">,</span></span>
+<span id="cb14-436"><a href="#cb14-436" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb14-437"><a href="#cb14-437" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>(rows<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"state"</span><span class="op">,</span> <span class="dt">x1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="st">"mean"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#E4E7EA"</span>})<span class="op">,</span></span>
+<span id="cb14-438"><a href="#cb14-438" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">dot</span>(rows<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"state"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> <span class="st">"mean"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="st">"detect"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"mean"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#33404D"</span><span class="op">,</span></span>
+<span id="cb14-439"><a href="#cb14-439" aria-hidden="true" tabindex="-1"></a>                      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb14-440"><a href="#cb14-440" aria-hidden="true" tabindex="-1"></a>                      <span class="dt">channels</span><span class="op">:</span> {<span class="st">"% detected"</span><span class="op">:</span> d <span class="kw">=&gt;</span> (<span class="dv">100</span> <span class="op">*</span> d<span class="op">.</span><span class="at">detect</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">+</span> <span class="st">"%"</span><span class="op">,</span></span>
+<span id="cb14-441"><a href="#cb14-441" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"cells in state"</span><span class="op">:</span> <span class="st">"n"</span>}})</span>
+<span id="cb14-442"><a href="#cb14-442" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb14-443"><a href="#cb14-443" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb14-444"><a href="#cb14-444" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-13" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div class="card bslib-card html-fill-container html-fill-item" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p><strong>The two gene maps use independent colour scales</strong>, so compare where each gene’s signal sits, not how dark the two look against each other. A housekeeping gene would otherwise flatten a cytokine. <strong>On the per-state card, dot area is the fraction of that state’s cells with any detected transcript.</strong> A gene can carry a low mean because few cells express it or because all express it weakly, and those are different claims; the two channels separate them.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div><div class="bslib-grid html-fill-item html-fill-container" data-height="38%" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, max-content) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card cell bslib-card html-fill-container html-fill-item" data-title="What this atlas calls progenitor-exhausted" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title html-fill-item html-fill-container"><span style="display: inline">
+What this atlas calls progenitor-exhausted
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb15" data-startfrom="459" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 458;"><span id="cb15-459"><a href="#cb15-459" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;table class="table table-sm"&gt;</span></span>
+<span id="cb15-460"><a href="#cb15-460" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;thead&gt;&lt;tr&gt;&lt;th&gt;label&lt;/th&gt;&lt;th&gt;cells in atlas&lt;/th&gt;&lt;th&gt;note&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</span></span>
+<span id="cb15-461"><a href="#cb15-461" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;tbody&gt;</span><span class="sc">${</span>meta<span class="op">.</span><span class="at">poles</span><span class="op">.</span><span class="fu">map</span>(p <span class="kw">=&gt;</span> <span class="vs">`&lt;tr&gt;</span></span>
+<span id="cb15-462"><a href="#cb15-462" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;td&gt;&lt;span style="display:inline-block;width:.7em;height:.7em;background:</span><span class="sc">${</span>p<span class="op">.</span><span class="at">colour</span><span class="sc">}</span><span class="vs">;</span></span>
+<span id="cb15-463"><a href="#cb15-463" aria-hidden="true" tabindex="-1"></a><span class="vs">      margin-right:.45em;border-radius:2px"&gt;&lt;/span&gt;&lt;code&gt;</span><span class="sc">${</span>p<span class="op">.</span><span class="at">member_label</span><span class="sc">}</span><span class="vs">&lt;/code&gt;&lt;/td&gt;</span></span>
+<span id="cb15-464"><a href="#cb15-464" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;td&gt;</span><span class="sc">${</span>p<span class="op">.</span><span class="at">atlas_n</span> <span class="op">===</span> <span class="kw">null</span> <span class="op">?</span> <span class="st">"—"</span> <span class="op">:</span> p<span class="op">.</span><span class="at">atlas_n</span><span class="op">.</span><span class="fu">toLocaleString</span>()<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb15-465"><a href="#cb15-465" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;td&gt;</span><span class="sc">${</span>p<span class="op">.</span><span class="at">note</span><span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;/tr&gt;`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)<span class="sc">}</span><span class="vs">&lt;/tbody&gt;&lt;/table&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-14" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div class="card cell bslib-card html-fill-container html-fill-item" data-title="Where each state sits (Ro/e)" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title html-fill-item html-fill-container"><span style="display: inline">
+Where each state sits (Ro/e)
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb16" data-startfrom="471" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 470;"><span id="cb16-471"><a href="#cb16-471" aria-hidden="true" tabindex="-1"></a>meta<span class="op">.</span><span class="at">roe</span> <span class="op">===</span> <span class="kw">null</span></span>
+<span id="cb16-472"><a href="#cb16-472" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;&lt;em&gt;Not applicable to this reference. It is built from tumor and metastasis only, so</span></span>
+<span id="cb16-473"><a href="#cb16-473" aria-hidden="true" tabindex="-1"></a><span class="vs">     every state sits in one compartment and Ro/e is 1.00 by construction.&lt;/em&gt;&lt;/p&gt;`</span></span>
+<span id="cb16-474"><a href="#cb16-474" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb16-475"><a href="#cb16-475" aria-hidden="true" tabindex="-1"></a>      <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">155</span><span class="op">,</span> <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">42</span><span class="op">,</span></span>
+<span id="cb16-476"><a href="#cb16-476" aria-hidden="true" tabindex="-1"></a>      <span class="dt">height</span><span class="op">:</span> <span class="dv">60</span> <span class="op">+</span> meta<span class="op">.</span><span class="at">roe</span><span class="op">.</span><span class="at">length</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">*</span> <span class="dv">17</span><span class="op">,</span></span>
+<span id="cb16-477"><a href="#cb16-477" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"compartment"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb16-478"><a href="#cb16-478" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"diverging"</span><span class="op">,</span> <span class="dt">scheme</span><span class="op">:</span> <span class="st">"RdBu"</span><span class="op">,</span> <span class="dt">reverse</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span></span>
+<span id="cb16-479"><a href="#cb16-479" aria-hidden="true" tabindex="-1"></a>              <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log2 Ro/e   (0 = no preference)"</span>}<span class="op">,</span></span>
+<span id="cb16-480"><a href="#cb16-480" aria-hidden="true" tabindex="-1"></a>      <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb16-481"><a href="#cb16-481" aria-hidden="true" tabindex="-1"></a>        Plot<span class="op">.</span><span class="fu">cell</span>(meta<span class="op">.</span><span class="at">roe</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"tissue"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"state"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"log2roe"</span><span class="op">,</span></span>
+<span id="cb16-482"><a href="#cb16-482" aria-hidden="true" tabindex="-1"></a>          <span class="dt">sort</span><span class="op">:</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"-fill"</span>}<span class="op">,</span></span>
+<span id="cb16-483"><a href="#cb16-483" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">channels</span><span class="op">:</span> {<span class="st">"Ro/e"</span><span class="op">:</span> <span class="st">"roe"</span><span class="op">,</span> <span class="dt">cells</span><span class="op">:</span> <span class="st">"observed"</span>}})<span class="op">,</span></span>
+<span id="cb16-484"><a href="#cb16-484" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ★ THIN CELLS ARE MARKED, NOT HIDDEN. Ro/e on a few dozen cells moves on noise, and a</span></span>
+<span id="cb16-485"><a href="#cb16-485" aria-hidden="true" tabindex="-1"></a>        <span class="co">// saturated square that rests on 12 cells reads exactly like one resting on 40,000.</span></span>
+<span id="cb16-486"><a href="#cb16-486" aria-hidden="true" tabindex="-1"></a>        Plot<span class="op">.</span><span class="fu">text</span>(meta<span class="op">.</span><span class="at">roe</span><span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">observed</span> <span class="op">&lt;</span> <span class="dv">100</span>)<span class="op">,</span></span>
+<span id="cb16-487"><a href="#cb16-487" aria-hidden="true" tabindex="-1"></a>          {<span class="dt">x</span><span class="op">:</span> <span class="st">"tissue"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"state"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="st">"·"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"black"</span>})</span>
+<span id="cb16-488"><a href="#cb16-488" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb16-489"><a href="#cb16-489" aria-hidden="true" tabindex="-1"></a>    })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-15" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div class="card cell bslib-card html-fill-container html-fill-item" data-title="What each state is made of (composition)" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title html-fill-item html-fill-container"><span style="display: inline">
+What each state is made of (composition)
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb17" data-startfrom="495" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 494;"><span id="cb17-495"><a href="#cb17-495" aria-hidden="true" tabindex="-1"></a>meta<span class="op">.</span><span class="at">roe</span> <span class="op">===</span> <span class="kw">null</span></span>
+<span id="cb17-496"><a href="#cb17-496" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;&lt;em&gt;Not applicable: this reference is tumor-only, so every state is 100% tumor.&lt;/em&gt;&lt;/p&gt;`</span></span>
+<span id="cb17-497"><a href="#cb17-497" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb17-498"><a href="#cb17-498" aria-hidden="true" tabindex="-1"></a>      <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">155</span><span class="op">,</span> <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">42</span><span class="op">,</span></span>
+<span id="cb17-499"><a href="#cb17-499" aria-hidden="true" tabindex="-1"></a>      <span class="dt">height</span><span class="op">:</span> <span class="dv">60</span> <span class="op">+</span> meta<span class="op">.</span><span class="at">roe</span><span class="op">.</span><span class="at">length</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">*</span> <span class="dv">17</span><span class="op">,</span></span>
+<span id="cb17-500"><a href="#cb17-500" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"% of that state's cells"</span><span class="op">,</span> <span class="dt">percent</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb17-501"><a href="#cb17-501" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"compartment"</span>}<span class="op">,</span></span>
+<span id="cb17-502"><a href="#cb17-502" aria-hidden="true" tabindex="-1"></a>      <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">barX</span>(meta<span class="op">.</span><span class="at">roe</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"pct_of_state"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"state"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"tissue"</span><span class="op">,</span></span>
+<span id="cb17-503"><a href="#cb17-503" aria-hidden="true" tabindex="-1"></a>                                   <span class="dt">sort</span><span class="op">:</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"-x"</span>}<span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">,</span></span>
+<span id="cb17-504"><a href="#cb17-504" aria-hidden="true" tabindex="-1"></a>              Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])]</span>
+<span id="cb17-505"><a href="#cb17-505" aria-hidden="true" tabindex="-1"></a>    })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-16" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div class="card bslib-card html-fill-container html-fill-item" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed html-fill-item html-fill-container" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container html-fill-item html-fill-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill html-fill-item html-fill-container">
+<span class="screen-reader-only">Note</span>No tissue axis for this reference
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end html-fill-item html-fill-container"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse html-fill-item html-fill-container">
+<div class="callout-body-container callout-body html-fill-item html-fill-container">
+<p>This atlas is built entirely from tumor and metastasis tumor-infiltrating lymphocytes, so every state is 100% tumor by construction and there is no tissue enrichment to compute. The two panels above say so rather than showing an empty axis.</p>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<div class="card cell bslib-card html-fill-container html-fill-item" data-title="States, by size in the atlas" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title html-fill-item html-fill-container"><span style="display: inline">
+States, by size in the atlas
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb18" data-startfrom="518" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 517;"><span id="cb18-518"><a href="#cb18-518" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ THIS TABLE SHOWS THE ATLAS'S OWN LABEL, and the map legend shows OUR display name. Both are</span></span>
+<span id="cb18-519"><a href="#cb18-519" aria-hidden="true" tabindex="-1"></a><span class="co">// correct and they are not always the same string: huARdb calls its narrow pole "Tpex" in</span></span>
+<span id="cb18-520"><a href="#cb18-520" aria-hidden="true" tabindex="-1"></a><span class="co">// cell_subtype_3, while every map and legend here renders it "SELL+ Tpex" to distinguish it from</span></span>
+<span id="cb18-521"><a href="#cb18-521" aria-hidden="true" tabindex="-1"></a><span class="co">// that atlas's second pole. Forcing one spelling would misrepresent one side or the other, so the</span></span>
+<span id="cb18-522"><a href="#cb18-522" aria-hidden="true" tabindex="-1"></a><span class="co">// difference is shown rather than hidden. Resolved through the same config the colours come from.</span></span>
+<span id="cb18-523"><a href="#cb18-523" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(meta<span class="op">.</span><span class="at">states</span><span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
+<span id="cb18-524"><a href="#cb18-524" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span>d<span class="op">,</span></span>
+<span id="cb18-525"><a href="#cb18-525" aria-hidden="true" tabindex="-1"></a>  <span class="dt">shown_as</span><span class="op">:</span> (stateNames<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">state</span>) <span class="op">?</span> <span class="st">""</span> <span class="op">:</span></span>
+<span id="cb18-526"><a href="#cb18-526" aria-hidden="true" tabindex="-1"></a>             stateNames<span class="op">.</span><span class="fu">find</span>(n <span class="kw">=&gt;</span> n<span class="op">.</span><span class="fu">endsWith</span>(<span class="st">" "</span> <span class="op">+</span> d<span class="op">.</span><span class="at">state</span>) <span class="op">||</span> n <span class="op">===</span> d<span class="op">.</span><span class="at">state</span>) <span class="op">||</span> <span class="st">""</span>)</span>
+<span id="cb18-527"><a href="#cb18-527" aria-hidden="true" tabindex="-1"></a>}))<span class="op">,</span> {</span>
+<span id="cb18-528"><a href="#cb18-528" aria-hidden="true" tabindex="-1"></a>  <span class="dt">columns</span><span class="op">:</span> [<span class="st">"state"</span><span class="op">,</span> <span class="st">"shown_as"</span><span class="op">,</span> <span class="st">"n_cells"</span>]<span class="op">,</span></span>
+<span id="cb18-529"><a href="#cb18-529" aria-hidden="true" tabindex="-1"></a>  <span class="dt">header</span><span class="op">:</span> {<span class="dt">state</span><span class="op">:</span> <span class="st">"label in this atlas"</span><span class="op">,</span> <span class="dt">shown_as</span><span class="op">:</span> <span class="st">"shown on the map as"</span><span class="op">,</span></span>
+<span id="cb18-530"><a href="#cb18-530" aria-hidden="true" tabindex="-1"></a>           <span class="dt">n_cells</span><span class="op">:</span> <span class="st">"cells in atlas"</span>}<span class="op">,</span></span>
+<span id="cb18-531"><a href="#cb18-531" aria-hidden="true" tabindex="-1"></a>  <span class="dt">sort</span><span class="op">:</span> <span class="st">"n_cells"</span><span class="op">,</span> <span class="dt">reverse</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb18-532"><a href="#cb18-532" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-17" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+
+
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+</div></div><aside id="bslib-sidebar-1" class="sidebar html-fill-container html-fill-item"><div class="html-fill-container html-fill-item">
+<p><a href="../atlases.html">← All atlases</a> | <a href="../cohorts.html">Cohorts</a></p>
+<p>Built entirely from tumor and metastasis tumor-infiltrating lymphocytes, with no lymph node or blood, so its progenitor pole is a tumor-resident, Tex-bridged one.</p>
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="72" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 71;"><span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>viewof statemode <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"all cells (points)"</span><span class="op">,</span> <span class="st">"all cells (binned)"</span><span class="op">,</span> <span class="st">"sampled cells"</span>]<span class="op">,</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"State map"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"all cells (points)"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+<div class="cell hidden">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="91" data-source-offset="-969"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 90;"><span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>geneIdx <span class="op">=</span> <span class="fu">fetch</span>(<span class="st">"../atlas-data/genes/cd8_tils_index.json"</span>)<span class="op">.</span><span class="fu">then</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="fu">json</span>())</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>byState <span class="op">=</span> <span class="fu">fetch</span>(<span class="st">"../atlas-data/genes/cd8_tils_bystate.bin"</span>)</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">then</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="fu">arrayBuffer</span>())<span class="op">.</span><span class="fu">then</span>(b <span class="kw">=&gt;</span> <span class="kw">new</span> <span class="bu">Uint8Array</span>(b))</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ ALL THREE gene lists, not just this atlas's. The page has to say WHICH references carry a</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="co">// gene it cannot draw, and it cannot do that from its own list alone. Measured before this: on the</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="co">// CD8 TILs page, 7,393 of 8,689 outside-universe genes (85%) were reported as "the other two did</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="co">// not measure it" when at least one of them had.</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>fullVars <span class="op">=</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">all</span>([<span class="st">"cd8_tils"</span><span class="op">,</span> <span class="st">"chu_pancancer"</span><span class="op">,</span> <span class="st">"huardb_v2"</span>]<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fetch</span>(<span class="vs">`../atlas-data/genes/</span><span class="sc">${</span>a<span class="sc">}</span><span class="vs">_fullvar.json`</span>)<span class="op">.</span><span class="fu">then</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="fu">json</span>())<span class="op">.</span><span class="fu">then</span>(v <span class="kw">=&gt;</span> [a<span class="op">,</span> <span class="kw">new</span> <span class="bu">Set</span>(v)])</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>))<span class="op">.</span><span class="fu">then</span>(<span class="bu">Object</span><span class="op">.</span><span class="at">fromEntries</span>)</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ Object.freeze, NOT A PARENTHESISED LITERAL, AND THIS IS NOT STYLE. These pages are</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="co">// `format: dashboard`, so the OJS runtime sets isDashboard and pushes EVERY cell through</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="co">// autosizeOJSPlot(), which reparses the cell and REGENERATES its source from the AST. That</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="co">// regeneration drops the wrapping parentheses, so a parenthesised object literal comes back</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="co">// without them, which in OJS grammar is a BLOCK BODY rather than an object literal. The cell then dies with</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="co">// "SyntaxError: Unexpected token", taking statemode, geneIdx, byState, fullVars and refName with</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="co">// it, and every card that depends on them renders a red RuntimeError box.</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="co">// A CallExpression body is not reinterpreted as a block, so this form survives the round trip.</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="co">// Verified against the shipped runtime's own parser and an independent @observablehq/parser.</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>refName <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">freeze</span>({<span class="dt">cd8_tils</span><span class="op">:</span> <span class="st">"CD8 TILs"</span><span class="op">,</span> <span class="dt">chu_pancancer</span><span class="op">:</span> <span class="st">"Chu pan-cancer"</span><span class="op">,</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>                         <span class="dt">huardb_v2</span><span class="op">:</span> <span class="st">"huARdb v2"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-4-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-4-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="116" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 115;"><span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>viewof gene <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"gene"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"TCF7"</span><span class="op">,</span> <span class="dt">submit</span><span class="op">:</span> <span class="st">"Show"</span><span class="op">,</span></span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>  <span class="dt">placeholder</span><span class="op">:</span> <span class="st">"any of the 18,718 shared genes"</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>viewof gene2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({</span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"compare with"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">submit</span><span class="op">:</span> <span class="st">"Compare"</span><span class="op">,</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>  <span class="dt">placeholder</span><span class="op">:</span> <span class="st">"optional second gene"</span></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ THE QUICK-PICK WRITES INTO THE TEXT BOX rather than overriding it. Overriding meant that once</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a><span class="co">// the dropdown left its placeholder row, typing did nothing, silently and permanently, until the</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="co">// reader worked out to reset the dropdown.</span></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>viewof quickPick <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>([<span class="st">"(curated markers)"</span>]<span class="op">.</span><span class="fu">concat</span>(meta<span class="op">.</span><span class="at">markers</span>)<span class="op">,</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"or pick a marker"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"(curated markers)"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell hidden">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="144" data-source-offset="-1011"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 143;"><span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>geneKeys <span class="op">=</span> {</span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>()<span class="op">;</span></span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> a <span class="kw">of</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(fullVars)) <span class="cf">for</span> (<span class="kw">const</span> g <span class="kw">of</span> fullVars[a]) m<span class="op">.</span><span class="fu">set</span>(g<span class="op">.</span><span class="fu">toUpperCase</span>()<span class="op">,</span> g)<span class="op">;</span></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> g <span class="kw">of</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(geneIdx<span class="op">.</span><span class="at">genes</span>)) m<span class="op">.</span><span class="fu">set</span>(g<span class="op">.</span><span class="fu">toUpperCase</span>()<span class="op">,</span> g)<span class="op">;</span>   <span class="co">// shipped spelling wins</span></span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> m<span class="op">;</span></span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>resolve <span class="op">=</span> raw <span class="kw">=&gt;</span> {</span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> t <span class="op">=</span> (raw <span class="op">||</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">trim</span>()<span class="op">;</span></span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>t) <span class="cf">return</span> <span class="st">""</span><span class="op">;</span></span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> geneKeys<span class="op">.</span><span class="fu">get</span>(t<span class="op">.</span><span class="fu">toUpperCase</span>()) <span class="op">||</span> t<span class="op">;</span>      <span class="co">// canonical spelling if known, else as typed</span></span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a><span class="co">// The dropdown sets the text field, so the two controls cannot disagree and neither wins forever.</span></span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (quickPick <span class="op">!==</span> <span class="st">"(curated markers)"</span> <span class="op">&amp;&amp;</span> viewof gene<span class="op">.</span><span class="at">value</span> <span class="op">!==</span> quickPick) {</span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>    viewof gene<span class="op">.</span><span class="at">value</span> <span class="op">=</span> quickPick<span class="op">;</span></span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>    viewof gene<span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">CustomEvent</span>(<span class="st">"input"</span>))<span class="op">;</span></span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="162" data-source-offset="-1705"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 161;"><span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>geneA <span class="op">=</span> <span class="fu">resolve</span>(gene)</span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>geneB <span class="op">=</span> <span class="fu">resolve</span>(gene2)</span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a><span class="co">// One bucket per lookup, after which every other gene in that bucket is served from the browser</span></span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a><span class="co">// cache. See docs/rse/specs/plan-atlas-gene-lookup.md for why this</span></span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a><span class="co">// beats one file per gene (56,154 files) and why HTTP Range was rejected (dead over file://).</span></span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a><span class="co">// Per-lookup size varies by atlas (111-171 KB cd8_tils, 113-174 KB chu, 282-433 KB huARdb),</span></span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a><span class="co">// so it is deliberately NOT stated as a single number anywhere reader-facing.</span></span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>geneVals <span class="op">=</span> <span class="kw">async</span> <span class="kw">function</span> (g) {</span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> e <span class="op">=</span> geneIdx<span class="op">.</span><span class="at">genes</span>[g]<span class="op">;</span></span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>e) <span class="cf">return</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> buf <span class="op">=</span> <span class="cf">await</span> (<span class="cf">await</span> <span class="fu">fetch</span>(</span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`../atlas-data/genes/cd8_tils/b</span><span class="sc">${</span><span class="bu">String</span>(e<span class="op">.</span><span class="at">b</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">3</span><span class="op">,</span> <span class="st">"0"</span>)<span class="sc">}</span><span class="vs">.bin`</span>))<span class="op">.</span><span class="fu">arrayBuffer</span>()<span class="op">;</span></span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> geneIdx<span class="op">.</span><span class="at">n_hex</span><span class="op">;</span></span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> row <span class="op">=</span> <span class="kw">new</span> <span class="bu">Uint8Array</span>(buf)<span class="op">.</span><span class="fu">subarray</span>(e<span class="op">.</span><span class="at">i</span> <span class="op">*</span> n<span class="op">,</span> (e<span class="op">.</span><span class="at">i</span> <span class="op">+</span> <span class="dv">1</span>) <span class="op">*</span> n)<span class="op">;</span></span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a>  <span class="co">// uint8 was quantised over [0, p99] with clipping, so this inverts to expression units and the</span></span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a>  <span class="co">// top of the ramp is a 99th percentile, NOT the maximum. The legend says so.</span></span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">v</span><span class="op">:</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>(row<span class="op">,</span> x <span class="kw">=&gt;</span> x <span class="op">/</span> <span class="dv">255</span> <span class="op">*</span> e<span class="op">.</span><span class="at">p99</span>)<span class="op">,</span> <span class="dt">p99</span><span class="op">:</span> e<span class="op">.</span><span class="at">p99</span><span class="op">,</span> <span class="dt">detect</span><span class="op">:</span> e<span class="op">.</span><span class="at">detect</span><span class="op">,</span></span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a>          <span class="co">// ★ p99 == 0 MEANS THE GENE IS EFFECTIVELY UNDETECTED IN THIS ATLAS, and it must be</span></span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a>          <span class="co">// reported rather than drawn. A zero-width colour domain makes d3 map every hexagon to</span></span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a>          <span class="co">// t=0.5, so the map came out a uniform mid-ramp teal that reads as MODERATE EXPRESSION</span></span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a>          <span class="co">// EVERYWHERE. That is 6,762 of 18,718 genes on CD8 TILs.</span></span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a>          <span class="dt">empty</span><span class="op">:</span> e<span class="op">.</span><span class="at">p99</span> <span class="op">&lt;=</span> <span class="dv">0</span>}<span class="op">;</span></span>
+<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a>valsA <span class="op">=</span> geneA <span class="op">?</span> <span class="fu">geneVals</span>(geneA) <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a>valsB <span class="op">=</span> geneB <span class="op">?</span> <span class="fu">geneVals</span>(geneB) <span class="op">:</span> <span class="kw">null</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-6-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell hidden">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="192" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 191;"><span id="cb8-192"><a href="#cb8-192" aria-hidden="true" tabindex="-1"></a><span class="co">// output: false because this chunk DEFINES geneNote; without it the function object printed into</span></span>
+<span id="cb8-193"><a href="#cb8-193" aria-hidden="true" tabindex="-1"></a><span class="co">// the sidebar as "geneNote = f(g, vals)". The CALL that displays the note is its own chunk below.</span></span>
+<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a><span class="co">// ★ THREE ABSENCE STATES, because "not found" would discard a real finding. The three references</span></span>
+<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a><span class="co">// were built on different feature spaces (19,957 / 27,407 / 70,777 genes against 18,718 shared),</span></span>
+<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a><span class="co">// and which one dropped a gene is a fact about how that reference was constructed.</span></span>
+<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">geneNote</span>(g<span class="op">,</span> vals) {</span>
+<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>g) <span class="cf">return</span> <span class="fu">md</span><span class="vs">``</span><span class="op">;</span></span>
+<span id="cb8-199"><a href="#cb8-199" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (vals) <span class="cf">return</span> <span class="fu">md</span><span class="vs">``</span><span class="op">;</span></span>
+<span id="cb8-200"><a href="#cb8-200" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ★ TWO SETS, NAMED FOR WHAT THEY ARE. An earlier version built the list of references that DO</span></span>
+<span id="cb8-201"><a href="#cb8-201" aria-hidden="true" tabindex="-1"></a>  <span class="co">// carry the gene and then wrote a sentence asserting they do NOT, so the page named the carrying</span></span>
+<span id="cb8-202"><a href="#cb8-202" aria-hidden="true" tabindex="-1"></a>  <span class="co">// reference as the one that was missing it. Keep `carry` and `lack` separate and never derive one</span></span>
+<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a>  <span class="co">// sentence from the other list.</span></span>
+<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ME <span class="op">=</span> <span class="st">"cd8_tils"</span><span class="op">;</span></span>
+<span id="cb8-205"><a href="#cb8-205" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> all <span class="op">=</span> [<span class="st">"cd8_tils"</span><span class="op">,</span> <span class="st">"chu_pancancer"</span><span class="op">,</span> <span class="st">"huardb_v2"</span>]<span class="op">;</span></span>
+<span id="cb8-206"><a href="#cb8-206" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> carry <span class="op">=</span> all<span class="op">.</span><span class="fu">filter</span>(a <span class="kw">=&gt;</span> fullVars[a]<span class="op">.</span><span class="fu">has</span>(g))<span class="op">;</span></span>
+<span id="cb8-207"><a href="#cb8-207" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> lack <span class="op">=</span> all<span class="op">.</span><span class="fu">filter</span>(a <span class="kw">=&gt;</span> <span class="op">!</span>fullVars[a]<span class="op">.</span><span class="fu">has</span>(g))<span class="op">;</span></span>
+<span id="cb8-208"><a href="#cb8-208" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> nm <span class="op">=</span> xs <span class="kw">=&gt;</span> xs<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> refName[a])<span class="op">.</span><span class="fu">join</span>(<span class="st">" and "</span>)<span class="op">;</span></span>
+<span id="cb8-209"><a href="#cb8-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (carry<span class="op">.</span><span class="fu">includes</span>(ME)) {</span>
+<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a>    <span class="co">// In this atlas but not shipped, so at least one OTHER reference lacks it.</span></span>
+<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> missing <span class="op">=</span> lack<span class="op">;</span>                       <span class="co">// by construction ME is not in here</span></span>
+<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">md</span><span class="vs">`**</span><span class="sc">${</span>g<span class="sc">}</span><span class="vs"> is outside the shared gene universe.** This reference measured it, but</span></span>
+<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">nm</span>(missing)<span class="sc">}</span><span class="vs"> did not, so it is not shipped here: every gene on these maps is one all three</span></span>
+<span id="cb8-215"><a href="#cb8-215" aria-hidden="true" tabindex="-1"></a><span class="vs">      atlases tested, the same restriction Figure 4 uses. Comparing on genes only some references</span></span>
+<span id="cb8-216"><a href="#cb8-216" aria-hidden="true" tabindex="-1"></a><span class="vs">      measured overstates enrichment.`</span><span class="op">;</span></span>
+<span id="cb8-217"><a href="#cb8-217" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-218"><a href="#cb8-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-219"><a href="#cb8-219" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> otherCarriers <span class="op">=</span> carry<span class="op">;</span>                  <span class="co">// ME is absent, so every carrier is another ref</span></span>
+<span id="cb8-220"><a href="#cb8-220" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (otherCarriers<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
+<span id="cb8-221"><a href="#cb8-221" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">md</span><span class="vs">`**</span><span class="sc">${</span>g<span class="sc">}</span><span class="vs"> was not measured by any reference in this study.** There is nothing to draw,</span></span>
+<span id="cb8-222"><a href="#cb8-222" aria-hidden="true" tabindex="-1"></a><span class="vs">      and the absence is not specific to </span><span class="sc">${</span>refName[ME]<span class="sc">}</span><span class="vs">.`</span><span class="op">;</span></span>
+<span id="cb8-223"><a href="#cb8-223" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (otherCarriers<span class="op">.</span><span class="at">length</span> <span class="op">===</span> all<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb8-224"><a href="#cb8-224" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">md</span><span class="vs">`**</span><span class="sc">${</span>g<span class="sc">}</span><span class="vs"> was not measured by </span><span class="sc">${</span>refName[ME]<span class="sc">}</span><span class="vs">.** Both other references carry it, so</span></span>
+<span id="cb8-225"><a href="#cb8-225" aria-hidden="true" tabindex="-1"></a><span class="vs">      the absence really is specific to this one. That is a property of how the reference was</span></span>
+<span id="cb8-226"><a href="#cb8-226" aria-hidden="true" tabindex="-1"></a><span class="vs">      built, not a gap in the portal.`</span><span class="op">;</span></span>
+<span id="cb8-227"><a href="#cb8-227" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Exactly one other carries it, so a third reference lacks it too and the absence is NOT unique.</span></span>
+<span id="cb8-228"><a href="#cb8-228" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">md</span><span class="vs">`**</span><span class="sc">${</span>g<span class="sc">}</span><span class="vs"> was not measured by </span><span class="sc">${</span>refName[ME]<span class="sc">}</span><span class="vs">.** </span><span class="sc">${</span><span class="fu">nm</span>(otherCarriers)<span class="sc">}</span><span class="vs"> carries it and</span></span>
+<span id="cb8-229"><a href="#cb8-229" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span><span class="fu">nm</span>(lack<span class="op">.</span><span class="fu">filter</span>(a <span class="kw">=&gt;</span> a <span class="op">!==</span> ME))<span class="sc">}</span><span class="vs"> does not either, so the absence is shared rather than</span></span>
+<span id="cb8-230"><a href="#cb8-230" aria-hidden="true" tabindex="-1"></a><span class="vs">    specific to this reference.`</span><span class="op">;</span></span>
+<span id="cb8-231"><a href="#cb8-231" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display hidden">
+<div id="ojs-cell-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="236" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 235;"><span id="cb9-236"><a href="#cb9-236" aria-hidden="true" tabindex="-1"></a><span class="fu">geneNote</span>(geneA<span class="op">,</span> valsA)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+<div class="callout callout-style-simple callout-important no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The two state maps fail in opposite directions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Sampled cells</strong> is a <em>stratified</em> sample with a floor per state, so every state stays visible. On the two large atlases it draws only a fraction of the cells; on an atlas shipped whole it is the same cells as the points view, and the provenance note beside this one says which case applies here. <strong>All cells (binned)</strong> counts every cell, colouring each hexagon by its most common state, with faint bins being mixed ones. But a modal map hides rare states. The sharpest example in this study comes from the huARdb atlas, where <code>Tex-Tpex</code> has 9,496 cells and is the most common state in <strong>one</strong> hexagon, because it is outvoted almost everywhere it occurs; the same effect applies here. Use the binned view for where the mass is, and the sampled view for where the rare states are. Neither alone is the atlas.</p>
+</div>
+</div>
+</div>
+<p><strong>10,045</strong> cells · <strong>7</strong> states · <strong>24</strong> markers</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Project new data onto this reference
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>SPICA, from the Carmona lab who build ProjecTILs, hosts reference maps of tumor-infiltrating T cells and will project an uploaded count matrix onto one of them.</p>
+<p><a href="https://spica.unil.ch/">https://spica.unil.ch/</a></p>
+<p>The hosted map is not guaranteed to be the same build as the reference object pinned in this study, so labels from it need not match ours cell-for-cell. Treat a SPICA projection as that service’s answer, not as a reproduction of these pages.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>How many cells this map shows
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This map shows <strong>all 10,045 cells</strong> in the atlas. Nothing is subsampled.</p>
+<p><strong>State counts elsewhere on this page are the atlas’s true counts, not counts of these points.</strong> The marker map is hex-binned: each mark is the mean lognormalised expression of the cells in that bin, so a rare high-expressing cell is averaged into its neighbourhood rather than showing as a bright point.</p>
+</div>
+</div>
+</div>
+</div></aside>
+<button class="collapse-toggle" type="button" title="Toggle sidebar" aria-expanded="true" aria-controls="bslib-sidebar-1">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" class="bi bi-chevron-left collapse-icon" style="fill:currentColor;" aria-hidden="true" role="img">
+      <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
+    </svg>
+</button>
+<script data-bslib-sidebar-init="">
+bslib.Sidebar.initCollapsibleAll()
+</script>
+</div>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1ldGEgICA9IEZpbGVBdHRhY2htZW50KFwiLi4vYXRsYXMtZGF0YS9jZDhfdGlscy5qc29uXCIpLmpzb24oKVxudW1hcCAgID0gRmlsZUF0dGFjaG1lbnQoXCIuLi9hdGxhcy1kYXRhL2NkOF90aWxzX3VtYXAuY3N2XCIpLmNzdih7dHlwZWQ6IHRydWV9KVxuaGV4ZXMgID0gRmlsZUF0dGFjaG1lbnQoXCIuLi9hdGxhcy1kYXRhL2NkOF90aWxzX21hcmtlcnMuY3N2XCIpLmNzdih7dHlwZWQ6IHRydWV9KVxuc3RhdGVOYW1lcyA9IEZpbGVBdHRhY2htZW50KFwiLi4vYXRsYXMtZGF0YS9jZDhfdGlsc19zdGF0ZXMuanNvblwiKS5qc29uKClcbi8vIE9yZGVyZWQgdG8gbWF0Y2ggc3RhdGVOYW1lcy4gUG9sZXMgY2FycnkgdGhlaXIgbG9ja2VkIGNvbmZpZyBjb2xvdXI7IHNlZSBzdGF0ZV9jb2xvdXJzKCkuXG5zdGF0ZUNvbG91cnMgPSBGaWxlQXR0YWNobWVudChcIi4uL2F0bGFzLWRhdGEvY2Q4X3RpbHNfc3RhdGVfY29sb3Vycy5qc29uXCIpLmpzb24oKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8g4piFIFBBUlNFRCBCWSBIQU5EIElOVE8gVFlQRUQgQVJSQVlTIFJBVEhFUiBUSEFOIFZJQSAuY3N2KCkuIGQzJ3MgcGFyc2VyIHdvdWxkIGFsbG9jYXRlIDEuMU0gSlNcbi8vIG9iamVjdHMgZm9yIGRhdGEgdGhhdCBpcyB0d28gZmxvYXRzIGFuZCBvbmUgYnl0ZSBwZXIgcm93OyB0eXBlZCBhcnJheXMga2VlcCBpdCBmbGF0IGFuZCBmYXN0LlxucHRzID0ge1xuICBjb25zdCB0ZXh0ID0gYXdhaXQgRmlsZUF0dGFjaG1lbnQoXCIuLi9hdGxhcy1kYXRhL2NkOF90aWxzX3VtYXBfZnVsbC5jc3ZcIikudGV4dCgpO1xuICAvLyDimIUgTkVXTElORSBWSUEgZnJvbUNoYXJDb2RlLCBOT1QgQU4gRVNDQVBFLCBBTkQgVEhFIENPTU1FTlQgSVRTRUxGIFBST1ZFRCBJVC4gQSBiYWNrc2xhc2gtbiB3cml0dGVuIGluIHRoaXNcbiAgLy8gdGVtcGxhdGUgaXMgYW4gRVNDQVBFIElOIFRIRSBQWVRIT04gU09VUkNFOiBQeXRob24gcmVzb2x2ZXMgaXQgdG8gYSByZWFsIG5ld2xpbmUgd2hlbiBpdFxuICAvLyBwYXJzZXMgdGhlIHN0cmluZyBsaXRlcmFsLCBzbyB0aGUgLnFtZCByZWNlaXZlZCBhbiBhY3R1YWwgbGluZSBicmVhayBpbnNpZGUgYSBKUyBzdHJpbmcuXG4gIC8vIFRoYXQgc3BsaXQgdGhlIHN0YXRlbWVudCBhY3Jvc3MgbGluZXMsIGJyb2tlIHRoZSBjZWxsLCBhbmQgbWFkZSBRdWFydG8gcmVuZGVyIHRoZSBlbnRpcmVcbiAgLy8gYmxvY2sgYXMgbGl0ZXJhbCB0ZXh0IGluc3RlYWQgb2YgZXhlY3V0aW5nIGl0IC0tIHdoaWNoIGxvb2tzIGxpa2UgYSBRdWFydG8gZWNobyBwcm9ibGVtXG4gIC8vIGFuZCBpcyBub3Qgb25lLiBObyBlc2NhcGUgc2VxdWVuY2UgbWVhbnMgbm90aGluZyBsZWZ0IHRvIGNvbGxhcHNlLlxuICBjb25zdCBOTCA9IFN0cmluZy5mcm9tQ2hhckNvZGUoMTApO1xuICBjb25zdCBib2R5ID0gdGV4dC5zbGljZSh0ZXh0LmluZGV4T2YoTkwpICsgMSk7XG4gIGNvbnN0IHJvd3MgPSBib2R5LnNwbGl0KE5MKTtcbiAgY29uc3QgbiA9IHJvd3Nbcm93cy5sZW5ndGggLSAxXSA9PT0gXCJcIiA/IHJvd3MubGVuZ3RoIC0gMSA6IHJvd3MubGVuZ3RoO1xuICBjb25zdCB4ID0gbmV3IEZsb2F0MzJBcnJheShuKSwgeSA9IG5ldyBGbG9hdDMyQXJyYXkobiksIHMgPSBuZXcgVWludDhBcnJheShuKTtcbiAgZm9yIChsZXQgaSA9IDA7IGkgPCBuOyBpKyspIHtcbiAgICBjb25zdCBsaW5lID0gcm93c1tpXTtcbiAgICBjb25zdCBhID0gbGluZS5pbmRleE9mKFwiLFwiKSwgYiA9IGxpbmUuaW5kZXhPZihcIixcIiwgYSArIDEpO1xuICAgIHhbaV0gPSArbGluZS5zbGljZSgwLCBhKTsgeVtpXSA9ICtsaW5lLnNsaWNlKGEgKyAxLCBiKTsgc1tpXSA9ICtsaW5lLnNsaWNlKGIgKyAxKTtcbiAgfVxuICByZXR1cm4ge3gsIHksIHMsIG59O1xufVxuXG4vLyDimIUgRFJBVyBPUkRFUiBJUyBCWSBSQVJJVFksIENPTU1PTkVTVCBGSVJTVC4gVGhpcyBpcyB0aGUgd2hvbGUgcmVhc29uIHRoZSBwb2ludCB2aWV3IGVhcm5zIGl0c1xuLy8gcGxhY2UgbmV4dCB0byB0aGUgYmlubmVkIG9uZTogdGhlIG1vZGFsIGhleCBtYXAgaGlkZXMgcmFyZSBzdGF0ZXMgZW50aXJlbHkgKGh1QVJkYidzIFRleC1UcGV4IGlzXG4vLyB0aGUgbW9zdCBjb21tb24gc3RhdGUgaW4gT05FIGhleGFnb24pLCB3aGVyZWFzIHBhaW50aW5nIHJhcmUgc3RhdGVzIExBU1QgcHV0cyB0aGVtIG9uIHRvcCBvZiB0aGVcbi8vIGRlbnNlIG9uZXMgaW5zdGVhZCBvZiB1bmRlciB0aGVtLlxuZHJhd09yZGVyID0ge1xuICBjb25zdCBjb3VudHMgPSBuZXcgTWFwKCk7XG4gIGZvciAobGV0IGkgPSAwOyBpIDwgcHRzLm47IGkrKykgY291bnRzLnNldChwdHMuc1tpXSwgKGNvdW50cy5nZXQocHRzLnNbaV0pIHx8IDApICsgMSk7XG4gIHJldHVybiBbLi4uY291bnRzLmVudHJpZXMoKV0uc29ydCgoYSwgYikgPT4gYlsxXSAtIGFbMV0pLm1hcChkID0+IGRbMF0pO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIHN0YXRlbW9kZSA9IElucHV0cy5yYWRpbyhcbiAgW1wiYWxsIGNlbGxzIChwb2ludHMpXCIsIFwiYWxsIGNlbGxzIChiaW5uZWQpXCIsIFwic2FtcGxlZCBjZWxsc1wiXSxcbiAge2xhYmVsOiBcIlN0YXRlIG1hcFwiLCB2YWx1ZTogXCJhbGwgY2VsbHMgKHBvaW50cylcIn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyDimIUgU1BMSVQgT1VULCBBTkQgb3V0cHV0OiBmYWxzZSBJUyBSRVFVSVJFRC4gZWNobyBoaWRlcyB0aGUgU09VUkNFOyBhIGNodW5rIHRoYXQgREVGSU5FUyBjZWxsc1xuLy8gc3RpbGwgZW1pdHMgYSB2aXNpYmxlIG91dHB1dCBzbG90IHBlciBjZWxsLCBzbyBnZW5lSWR4LCBieVN0YXRlLCBmdWxsVmFycyBhbmQgcmVmTmFtZSBwcmludGVkXG4vLyBpbnNwZWN0b3IgZHVtcHMgaW50byB0aGUgc2lkZWJhciAoXCJPYmplY3Qge+KApn1cIiwgXCJVaW50OEFycmF5KDI2MjA1MikgW+KApl1cIikuIFRoZXkgY291bGQgbm90IHNoYXJlXG4vLyBhIGNodW5rIHdpdGggdGhlIHJhZGlvIGFib3ZlLCB3aGljaCBtdXN0IHJlbmRlci4gVGhpcyBvbmx5IHN1cmZhY2VkIG9uY2UgcmVmTmFtZSB3YXMgZml4ZWQgdG9cbi8vIHN1cnZpdmUgdGhlIGRhc2hib2FyZCBBU1QgcmV3cml0ZTogYmVmb3JlIHRoYXQgdGhlIGNodW5rIGRpZWQgYXQgcGFyc2UgYW5kIHByaW50ZWQgbm90aGluZy5cbi8vIOKUgOKUgCBHRU5FIExPT0tVUCDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIBcbi8vIOKYhSBUSEUgSU5ERVggQU5EIFRIRSBQRVItU1RBVEUgU1VNTUFSWSBBUkUgRkVUQ0hFRCwgTk9UIEZpbGVBdHRhY2htZW50J2QuIEEgRmlsZUF0dGFjaG1lbnQgcGF0aFxuLy8gbXVzdCBiZSBhIGxpdGVyYWwgYXQgY29tcGlsZSB0aW1lLCBhbmQgdGhlIHdob2xlIHBvaW50IGhlcmUgaXMgYSBnZW5lIGNob3NlbiBhdCBydW50aW1lLiBUaGVcbi8vIGF0bGFzIHBhZ2VzIGFscmVhZHkgZmV0Y2ggLi4vYXRsYXMtZGF0YS8qIHJlbGF0aXZlbHksIHNvIHRoaXMgYWRkcyBubyBuZXcgY29uc3RyYWludDogdGhlc2Vcbi8vIHBhZ2VzIG5lZWQgdG8gYmUgU0VSVkVEIChweXRob24gLW0gaHR0cC5zZXJ2ZXIpLCB1bmxpa2UgdGhlIGZpZ3VyZSBwYWdlcyB3aGljaCBlbWJlZCBldmVyeXRoaW5nLlxuZ2VuZUlkeCA9IGZldGNoKFwiLi4vYXRsYXMtZGF0YS9nZW5lcy9jZDhfdGlsc19pbmRleC5qc29uXCIpLnRoZW4ociA9PiByLmpzb24oKSlcbmJ5U3RhdGUgPSBmZXRjaChcIi4uL2F0bGFzLWRhdGEvZ2VuZXMvY2Q4X3RpbHNfYnlzdGF0ZS5iaW5cIilcbiAgLnRoZW4ociA9PiByLmFycmF5QnVmZmVyKCkpLnRoZW4oYiA9PiBuZXcgVWludDhBcnJheShiKSlcbi8vIOKYhSBBTEwgVEhSRUUgZ2VuZSBsaXN0cywgbm90IGp1c3QgdGhpcyBhdGxhcydzLiBUaGUgcGFnZSBoYXMgdG8gc2F5IFdISUNIIHJlZmVyZW5jZXMgY2FycnkgYVxuLy8gZ2VuZSBpdCBjYW5ub3QgZHJhdywgYW5kIGl0IGNhbm5vdCBkbyB0aGF0IGZyb20gaXRzIG93biBsaXN0IGFsb25lLiBNZWFzdXJlZCBiZWZvcmUgdGhpczogb24gdGhlXG4vLyBDRDggVElMcyBwYWdlLCA3LDM5MyBvZiA4LDY4OSBvdXRzaWRlLXVuaXZlcnNlIGdlbmVzICg4NSUpIHdlcmUgcmVwb3J0ZWQgYXMgXCJ0aGUgb3RoZXIgdHdvIGRpZFxuLy8gbm90IG1lYXN1cmUgaXRcIiB3aGVuIGF0IGxlYXN0IG9uZSBvZiB0aGVtIGhhZC5cbmZ1bGxWYXJzID0gUHJvbWlzZS5hbGwoW1wiY2Q4X3RpbHNcIiwgXCJjaHVfcGFuY2FuY2VyXCIsIFwiaHVhcmRiX3YyXCJdLm1hcChhID0+XG4gIGZldGNoKGAuLi9hdGxhcy1kYXRhL2dlbmVzLyR7YX1fZnVsbHZhci5qc29uYCkudGhlbihyID0+IHIuanNvbigpKS50aGVuKHYgPT4gW2EsIG5ldyBTZXQodildKVxuKSkudGhlbihPYmplY3QuZnJvbUVudHJpZXMpXG4vLyDimIUgT2JqZWN0LmZyZWV6ZSwgTk9UIEEgUEFSRU5USEVTSVNFRCBMSVRFUkFMLCBBTkQgVEhJUyBJUyBOT1QgU1RZTEUuIFRoZXNlIHBhZ2VzIGFyZVxuLy8gYGZvcm1hdDogZGFzaGJvYXJkYCwgc28gdGhlIE9KUyBydW50aW1lIHNldHMgaXNEYXNoYm9hcmQgYW5kIHB1c2hlcyBFVkVSWSBjZWxsIHRocm91Z2hcbi8vIGF1dG9zaXplT0pTUGxvdCgpLCB3aGljaCByZXBhcnNlcyB0aGUgY2VsbCBhbmQgUkVHRU5FUkFURVMgaXRzIHNvdXJjZSBmcm9tIHRoZSBBU1QuIFRoYXRcbi8vIHJlZ2VuZXJhdGlvbiBkcm9wcyB0aGUgd3JhcHBpbmcgcGFyZW50aGVzZXMsIHNvIGEgcGFyZW50aGVzaXNlZCBvYmplY3QgbGl0ZXJhbCBjb21lcyBiYWNrXG4vLyB3aXRob3V0IHRoZW0sIHdoaWNoIGluIE9KUyBncmFtbWFyIGlzIGEgQkxPQ0sgQk9EWSByYXRoZXIgdGhhbiBhbiBvYmplY3QgbGl0ZXJhbC4gVGhlIGNlbGwgdGhlbiBkaWVzIHdpdGhcbi8vIFwiU3ludGF4RXJyb3I6IFVuZXhwZWN0ZWQgdG9rZW5cIiwgdGFraW5nIHN0YXRlbW9kZSwgZ2VuZUlkeCwgYnlTdGF0ZSwgZnVsbFZhcnMgYW5kIHJlZk5hbWUgd2l0aFxuLy8gaXQsIGFuZCBldmVyeSBjYXJkIHRoYXQgZGVwZW5kcyBvbiB0aGVtIHJlbmRlcnMgYSByZWQgUnVudGltZUVycm9yIGJveC5cbi8vIEEgQ2FsbEV4cHJlc3Npb24gYm9keSBpcyBub3QgcmVpbnRlcnByZXRlZCBhcyBhIGJsb2NrLCBzbyB0aGlzIGZvcm0gc3Vydml2ZXMgdGhlIHJvdW5kIHRyaXAuXG4vLyBWZXJpZmllZCBhZ2FpbnN0IHRoZSBzaGlwcGVkIHJ1bnRpbWUncyBvd24gcGFyc2VyIGFuZCBhbiBpbmRlcGVuZGVudCBAb2JzZXJ2YWJsZWhxL3BhcnNlci5cbnJlZk5hbWUgPSBPYmplY3QuZnJlZXplKHtjZDhfdGlsczogXCJDRDggVElMc1wiLCBjaHVfcGFuY2FuY2VyOiBcIkNodSBwYW4tY2FuY2VyXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgaHVhcmRiX3YyOiBcImh1QVJkYiB2MlwifSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBnZW5lID0gSW5wdXRzLnRleHQoe1xuICBsYWJlbDogXCJnZW5lXCIsIHZhbHVlOiBcIlRDRjdcIiwgc3VibWl0OiBcIlNob3dcIixcbiAgcGxhY2Vob2xkZXI6IFwiYW55IG9mIHRoZSAxOCw3MTggc2hhcmVkIGdlbmVzXCJcbn0pXG52aWV3b2YgZ2VuZTIgPSBJbnB1dHMudGV4dCh7XG4gIGxhYmVsOiBcImNvbXBhcmUgd2l0aFwiLCB2YWx1ZTogXCJcIiwgc3VibWl0OiBcIkNvbXBhcmVcIixcbiAgcGxhY2Vob2xkZXI6IFwib3B0aW9uYWwgc2Vjb25kIGdlbmVcIlxufSlcbi8vIOKYhSBUSEUgUVVJQ0stUElDSyBXUklURVMgSU5UTyBUSEUgVEVYVCBCT1ggcmF0aGVyIHRoYW4gb3ZlcnJpZGluZyBpdC4gT3ZlcnJpZGluZyBtZWFudCB0aGF0IG9uY2Vcbi8vIHRoZSBkcm9wZG93biBsZWZ0IGl0cyBwbGFjZWhvbGRlciByb3csIHR5cGluZyBkaWQgbm90aGluZywgc2lsZW50bHkgYW5kIHBlcm1hbmVudGx5LCB1bnRpbCB0aGVcbi8vIHJlYWRlciB3b3JrZWQgb3V0IHRvIHJlc2V0IHRoZSBkcm9wZG93bi5cbnZpZXdvZiBxdWlja1BpY2sgPSBJbnB1dHMuc2VsZWN0KFtcIihjdXJhdGVkIG1hcmtlcnMpXCJdLmNvbmNhdChtZXRhLm1hcmtlcnMpLFxuICB7bGFiZWw6IFwib3IgcGljayBhIG1hcmtlclwiLCB2YWx1ZTogXCIoY3VyYXRlZCBtYXJrZXJzKVwifSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIFRoZSBxdWljay1waWNrIG92ZXJyaWRlcyB0aGUgdGV4dCBib3ggd2hlbiBpdCBpcyBub3Qgb24gaXRzIHBsYWNlaG9sZGVyIHJvdy5cbi8vIOKYhSBSRVNPTFZFIENBU0UtSU5TRU5TSVRJVkVMWSwgRE8gTk9UIFVQUEVSQ0FTRS4gMjg1IG9mIHRoZSAxOCw3MTggc2hpcHBlZCBnZW5lcyBhcmUgbm90XG4vLyBhbGwtdXBwZXJjYXNlIChDMTBvcmYxMDUsIEMxb3JmNTYsIC4uLikuIFVwcGVyY2FzaW5nIG1hZGUgZXZlcnkgb25lIG9mIHRoZW0gdW5yZWFjaGFibGUgQU5EIG1hZGVcbi8vIHRoZSBwYWdlIGFzc2VydCB0aGV5IHdlcmUgbmV2ZXIgbWVhc3VyZWQsIHdoaWNoIHdhcyBmYWxzZSBpbiBhbGwgdGhyZWUgYXRsYXNlcy5cbi8vIOKYhSBDQVNFLUZPTEQgQUdBSU5TVCBFVkVSWSBHRU5FIE5BTUUgVEhFIFBBR0UgV0lMTCBMT09LIFVQLCBOT1QgT05MWSBUSEUgU0hJUFBFRCBPTkVTLiBBblxuLy8gZWFybGllciB2ZXJzaW9uIGZvbGRlZCBhZ2FpbnN0IHRoZSAxOCw3MTggc2hpcHBlZCBnZW5lcyBhbG9uZSwgc28gYW4gb3V0LW9mLXVuaXZlcnNlIGdlbmUgY2FtZVxuLy8gdGhyb3VnaCBleGFjdGx5IGFzIHR5cGVkIGFuZCBnZW5lTm90ZSdzIGBmdWxsVmFyc1thXS5oYXMoZylgIG1pc3NlZCBvbiBjYXNlLiBUeXBpbmcgXCJtYXJjaDFcIlxuLy8gdGhlbiBwcm9kdWNlZCBcIndhcyBub3QgbWVhc3VyZWQgYnkgQU5ZIHJlZmVyZW5jZVwiLCBmYWxzZSBmb3IgNTMsNzI1IG9mIHRoZSA1Myw3NzFcbi8vIG91dC1vZi11bml2ZXJzZSBnZW5lczsgdHlwaW5nIHRoZSBuYXR1cmFsIGFsbC1jYXBzIFwiQzEwT1JGMTEyXCIgd2FzIHdyb25nIGZvciBhbm90aGVyIDU2NCB3aG9zZVxuLy8gY2Fub25pY2FsIHNwZWxsaW5nIGlzIG1peGVkLWNhc2UuIFRoZSBndWFyZCBleGlzdGVkIG9uZSBmdW5jdGlvbiBhd2F5IGZyb20gd2hlcmUgaXQgd2FzIG5lZWRlZCxcbi8vIHdoaWNoIGlzIHRoZSB0aGlyZCB0aW1lIHRoaXMgZmVhdHVyZSBoYXMgYmVlbiBmaXhlZCBpbiBvbmUgcGxhY2UgYW5kIG5vdCBpdHMgc2libGluZy5cbmdlbmVLZXlzID0ge1xuICBjb25zdCBtID0gbmV3IE1hcCgpO1xuICBmb3IgKGNvbnN0IGEgb2YgT2JqZWN0LmtleXMoZnVsbFZhcnMpKSBmb3IgKGNvbnN0IGcgb2YgZnVsbFZhcnNbYV0pIG0uc2V0KGcudG9VcHBlckNhc2UoKSwgZyk7XG4gIGZvciAoY29uc3QgZyBvZiBPYmplY3Qua2V5cyhnZW5lSWR4LmdlbmVzKSkgbS5zZXQoZy50b1VwcGVyQ2FzZSgpLCBnKTsgICAvLyBzaGlwcGVkIHNwZWxsaW5nIHdpbnNcbiAgcmV0dXJuIG07XG59XG5yZXNvbHZlID0gcmF3ID0+IHtcbiAgY29uc3QgdCA9IChyYXcgfHwgXCJcIikudHJpbSgpO1xuICBpZiAoIXQpIHJldHVybiBcIlwiO1xuICByZXR1cm4gZ2VuZUtleXMuZ2V0KHQudG9VcHBlckNhc2UoKSkgfHwgdDsgICAgICAvLyBjYW5vbmljYWwgc3BlbGxpbmcgaWYga25vd24sIGVsc2UgYXMgdHlwZWRcbn1cbi8vIFRoZSBkcm9wZG93biBzZXRzIHRoZSB0ZXh0IGZpZWxkLCBzbyB0aGUgdHdvIGNvbnRyb2xzIGNhbm5vdCBkaXNhZ3JlZSBhbmQgbmVpdGhlciB3aW5zIGZvcmV2ZXIuXG57XG4gIGlmIChxdWlja1BpY2sgIT09IFwiKGN1cmF0ZWQgbWFya2VycylcIiAmJiB2aWV3b2YgZ2VuZS52YWx1ZSAhPT0gcXVpY2tQaWNrKSB7XG4gICAgdmlld29mIGdlbmUudmFsdWUgPSBxdWlja1BpY2s7XG4gICAgdmlld29mIGdlbmUuZGlzcGF0Y2hFdmVudChuZXcgQ3VzdG9tRXZlbnQoXCJpbnB1dFwiKSk7XG4gIH1cbn1cbmdlbmVBID0gcmVzb2x2ZShnZW5lKVxuZ2VuZUIgPSByZXNvbHZlKGdlbmUyKVxuXG4vLyBPbmUgYnVja2V0IHBlciBsb29rdXAsIGFmdGVyIHdoaWNoIGV2ZXJ5IG90aGVyIGdlbmUgaW4gdGhhdCBidWNrZXQgaXMgc2VydmVkIGZyb20gdGhlIGJyb3dzZXJcbi8vIGNhY2hlLiBTZWUgZG9jcy9yc2Uvc3BlY3MvcGxhbi1hdGxhcy1nZW5lLWxvb2t1cC5tZCBmb3Igd2h5IHRoaXNcbi8vIGJlYXRzIG9uZSBmaWxlIHBlciBnZW5lICg1NiwxNTQgZmlsZXMpIGFuZCB3aHkgSFRUUCBSYW5nZSB3YXMgcmVqZWN0ZWQgKGRlYWQgb3ZlciBmaWxlOi8vKS5cbi8vIFBlci1sb29rdXAgc2l6ZSB2YXJpZXMgYnkgYXRsYXMgKDExMS0xNzEgS0IgY2Q4X3RpbHMsIDExMy0xNzQgS0IgY2h1LCAyODItNDMzIEtCIGh1QVJkYiksXG4vLyBzbyBpdCBpcyBkZWxpYmVyYXRlbHkgTk9UIHN0YXRlZCBhcyBhIHNpbmdsZSBudW1iZXIgYW55d2hlcmUgcmVhZGVyLWZhY2luZy5cbmdlbmVWYWxzID0gYXN5bmMgZnVuY3Rpb24gKGcpIHtcbiAgY29uc3QgZSA9IGdlbmVJZHguZ2VuZXNbZ107XG4gIGlmICghZSkgcmV0dXJuIG51bGw7XG4gIGNvbnN0IGJ1ZiA9IGF3YWl0IChhd2FpdCBmZXRjaChcbiAgICBgLi4vYXRsYXMtZGF0YS9nZW5lcy9jZDhfdGlscy9iJHtTdHJpbmcoZS5iKS5wYWRTdGFydCgzLCBcIjBcIil9LmJpbmApKS5hcnJheUJ1ZmZlcigpO1xuICBjb25zdCBuID0gZ2VuZUlkeC5uX2hleDtcbiAgY29uc3Qgcm93ID0gbmV3IFVpbnQ4QXJyYXkoYnVmKS5zdWJhcnJheShlLmkgKiBuLCAoZS5pICsgMSkgKiBuKTtcbiAgLy8gdWludDggd2FzIHF1YW50aXNlZCBvdmVyIFswLCBwOTldIHdpdGggY2xpcHBpbmcsIHNvIHRoaXMgaW52ZXJ0cyB0byBleHByZXNzaW9uIHVuaXRzIGFuZCB0aGVcbiAgLy8gdG9wIG9mIHRoZSByYW1wIGlzIGEgOTl0aCBwZXJjZW50aWxlLCBOT1QgdGhlIG1heGltdW0uIFRoZSBsZWdlbmQgc2F5cyBzby5cbiAgcmV0dXJuIHt2OiBBcnJheS5mcm9tKHJvdywgeCA9PiB4IC8gMjU1ICogZS5wOTkpLCBwOTk6IGUucDk5LCBkZXRlY3Q6IGUuZGV0ZWN0LFxuICAgICAgICAgIC8vIOKYhSBwOTkgPT0gMCBNRUFOUyBUSEUgR0VORSBJUyBFRkZFQ1RJVkVMWSBVTkRFVEVDVEVEIElOIFRISVMgQVRMQVMsIGFuZCBpdCBtdXN0IGJlXG4gICAgICAgICAgLy8gcmVwb3J0ZWQgcmF0aGVyIHRoYW4gZHJhd24uIEEgemVyby13aWR0aCBjb2xvdXIgZG9tYWluIG1ha2VzIGQzIG1hcCBldmVyeSBoZXhhZ29uIHRvXG4gICAgICAgICAgLy8gdD0wLjUsIHNvIHRoZSBtYXAgY2FtZSBvdXQgYSB1bmlmb3JtIG1pZC1yYW1wIHRlYWwgdGhhdCByZWFkcyBhcyBNT0RFUkFURSBFWFBSRVNTSU9OXG4gICAgICAgICAgLy8gRVZFUllXSEVSRS4gVGhhdCBpcyA2LDc2MiBvZiAxOCw3MTggZ2VuZXMgb24gQ0Q4IFRJTHMuXG4gICAgICAgICAgZW1wdHk6IGUucDk5IDw9IDB9O1xufVxudmFsc0EgPSBnZW5lQSA/IGdlbmVWYWxzKGdlbmVBKSA6IG51bGxcbnZhbHNCID0gZ2VuZUIgPyBnZW5lVmFscyhnZW5lQikgOiBudWxsXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTciLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyBvdXRwdXQ6IGZhbHNlIGJlY2F1c2UgdGhpcyBjaHVuayBERUZJTkVTIGdlbmVOb3RlOyB3aXRob3V0IGl0IHRoZSBmdW5jdGlvbiBvYmplY3QgcHJpbnRlZCBpbnRvXG4vLyB0aGUgc2lkZWJhciBhcyBcImdlbmVOb3RlID0gZihnLCB2YWxzKVwiLiBUaGUgQ0FMTCB0aGF0IGRpc3BsYXlzIHRoZSBub3RlIGlzIGl0cyBvd24gY2h1bmsgYmVsb3cuXG4vLyDimIUgVEhSRUUgQUJTRU5DRSBTVEFURVMsIGJlY2F1c2UgXCJub3QgZm91bmRcIiB3b3VsZCBkaXNjYXJkIGEgcmVhbCBmaW5kaW5nLiBUaGUgdGhyZWUgcmVmZXJlbmNlc1xuLy8gd2VyZSBidWlsdCBvbiBkaWZmZXJlbnQgZmVhdHVyZSBzcGFjZXMgKDE5LDk1NyAvIDI3LDQwNyAvIDcwLDc3NyBnZW5lcyBhZ2FpbnN0IDE4LDcxOCBzaGFyZWQpLFxuLy8gYW5kIHdoaWNoIG9uZSBkcm9wcGVkIGEgZ2VuZSBpcyBhIGZhY3QgYWJvdXQgaG93IHRoYXQgcmVmZXJlbmNlIHdhcyBjb25zdHJ1Y3RlZC5cbmZ1bmN0aW9uIGdlbmVOb3RlKGcsIHZhbHMpIHtcbiAgaWYgKCFnKSByZXR1cm4gbWRgYDtcbiAgaWYgKHZhbHMpIHJldHVybiBtZGBgO1xuICAvLyDimIUgVFdPIFNFVFMsIE5BTUVEIEZPUiBXSEFUIFRIRVkgQVJFLiBBbiBlYXJsaWVyIHZlcnNpb24gYnVpbHQgdGhlIGxpc3Qgb2YgcmVmZXJlbmNlcyB0aGF0IERPXG4gIC8vIGNhcnJ5IHRoZSBnZW5lIGFuZCB0aGVuIHdyb3RlIGEgc2VudGVuY2UgYXNzZXJ0aW5nIHRoZXkgZG8gTk9ULCBzbyB0aGUgcGFnZSBuYW1lZCB0aGUgY2FycnlpbmdcbiAgLy8gcmVmZXJlbmNlIGFzIHRoZSBvbmUgdGhhdCB3YXMgbWlzc2luZyBpdC4gS2VlcCBgY2FycnlgIGFuZCBgbGFja2Agc2VwYXJhdGUgYW5kIG5ldmVyIGRlcml2ZSBvbmVcbiAgLy8gc2VudGVuY2UgZnJvbSB0aGUgb3RoZXIgbGlzdC5cbiAgY29uc3QgTUUgPSBcImNkOF90aWxzXCI7XG4gIGNvbnN0IGFsbCA9IFtcImNkOF90aWxzXCIsIFwiY2h1X3BhbmNhbmNlclwiLCBcImh1YXJkYl92MlwiXTtcbiAgY29uc3QgY2FycnkgPSBhbGwuZmlsdGVyKGEgPT4gZnVsbFZhcnNbYV0uaGFzKGcpKTtcbiAgY29uc3QgbGFjayA9IGFsbC5maWx0ZXIoYSA9PiAhZnVsbFZhcnNbYV0uaGFzKGcpKTtcbiAgY29uc3Qgbm0gPSB4cyA9PiB4cy5tYXAoYSA9PiByZWZOYW1lW2FdKS5qb2luKFwiIGFuZCBcIik7XG5cbiAgaWYgKGNhcnJ5LmluY2x1ZGVzKE1FKSkge1xuICAgIC8vIEluIHRoaXMgYXRsYXMgYnV0IG5vdCBzaGlwcGVkLCBzbyBhdCBsZWFzdCBvbmUgT1RIRVIgcmVmZXJlbmNlIGxhY2tzIGl0LlxuICAgIGNvbnN0IG1pc3NpbmcgPSBsYWNrOyAgICAgICAgICAgICAgICAgICAgICAgLy8gYnkgY29uc3RydWN0aW9uIE1FIGlzIG5vdCBpbiBoZXJlXG4gICAgcmV0dXJuIG1kYCoqJHtnfSBpcyBvdXRzaWRlIHRoZSBzaGFyZWQgZ2VuZSB1bml2ZXJzZS4qKiBUaGlzIHJlZmVyZW5jZSBtZWFzdXJlZCBpdCwgYnV0XG4gICAgICAke25tKG1pc3NpbmcpfSBkaWQgbm90LCBzbyBpdCBpcyBub3Qgc2hpcHBlZCBoZXJlOiBldmVyeSBnZW5lIG9uIHRoZXNlIG1hcHMgaXMgb25lIGFsbCB0aHJlZVxuICAgICAgYXRsYXNlcyB0ZXN0ZWQsIHRoZSBzYW1lIHJlc3RyaWN0aW9uIEZpZ3VyZSA0IHVzZXMuIENvbXBhcmluZyBvbiBnZW5lcyBvbmx5IHNvbWUgcmVmZXJlbmNlc1xuICAgICAgbWVhc3VyZWQgb3ZlcnN0YXRlcyBlbnJpY2htZW50LmA7XG4gIH1cblxuICBjb25zdCBvdGhlckNhcnJpZXJzID0gY2Fycnk7ICAgICAgICAgICAgICAgICAgLy8gTUUgaXMgYWJzZW50LCBzbyBldmVyeSBjYXJyaWVyIGlzIGFub3RoZXIgcmVmXG4gIGlmIChvdGhlckNhcnJpZXJzLmxlbmd0aCA9PT0gMClcbiAgICByZXR1cm4gbWRgKioke2d9IHdhcyBub3QgbWVhc3VyZWQgYnkgYW55IHJlZmVyZW5jZSBpbiB0aGlzIHN0dWR5LioqIFRoZXJlIGlzIG5vdGhpbmcgdG8gZHJhdyxcbiAgICAgIGFuZCB0aGUgYWJzZW5jZSBpcyBub3Qgc3BlY2lmaWMgdG8gJHtyZWZOYW1lW01FXX0uYDtcbiAgaWYgKG90aGVyQ2FycmllcnMubGVuZ3RoID09PSBhbGwubGVuZ3RoIC0gMSlcbiAgICByZXR1cm4gbWRgKioke2d9IHdhcyBub3QgbWVhc3VyZWQgYnkgJHtyZWZOYW1lW01FXX0uKiogQm90aCBvdGhlciByZWZlcmVuY2VzIGNhcnJ5IGl0LCBzb1xuICAgICAgdGhlIGFic2VuY2UgcmVhbGx5IGlzIHNwZWNpZmljIHRvIHRoaXMgb25lLiBUaGF0IGlzIGEgcHJvcGVydHkgb2YgaG93IHRoZSByZWZlcmVuY2Ugd2FzXG4gICAgICBidWlsdCwgbm90IGEgZ2FwIGluIHRoZSBwb3J0YWwuYDtcbiAgLy8gRXhhY3RseSBvbmUgb3RoZXIgY2FycmllcyBpdCwgc28gYSB0aGlyZCByZWZlcmVuY2UgbGFja3MgaXQgdG9vIGFuZCB0aGUgYWJzZW5jZSBpcyBOT1QgdW5pcXVlLlxuICByZXR1cm4gbWRgKioke2d9IHdhcyBub3QgbWVhc3VyZWQgYnkgJHtyZWZOYW1lW01FXX0uKiogJHtubShvdGhlckNhcnJpZXJzKX0gY2FycmllcyBpdCBhbmRcbiAgICAke25tKGxhY2suZmlsdGVyKGEgPT4gYSAhPT0gTUUpKX0gZG9lcyBub3QgZWl0aGVyLCBzbyB0aGUgYWJzZW5jZSBpcyBzaGFyZWQgcmF0aGVyIHRoYW5cbiAgICBzcGVjaWZpYyB0byB0aGlzIHJlZmVyZW5jZS5gO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC04IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiZ2VuZU5vdGUoZ2VuZUEsIHZhbHNBKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC05IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8g4piFIEVWRVJZIENFTEwsIERSQVdOIElORElWSURVQUxMWS4gTm8gc2FtcGxpbmcgYW5kIG5vIGJpbm5pbmc6IDEwLDA0NSBwb2ludHMgc3RyYWlnaHQgb250byBhXG4vLyAyRCBjYW52YXMuIEEgZGV2aWNlLXBpeGVsLXJhdGlvIGJhY2tpbmcgc3RvcmUga2VlcHMgaXQgc2hhcnAgb24gcmV0aW5hIGRpc3BsYXlzIHdpdGhvdXRcbi8vIG11bHRpcGx5aW5nIHRoZSB3b3JrLCBzaW5jZSB0aGUgY29zdCBoZXJlIGlzIGZpbGwgY2FsbHMgcmF0aGVyIHRoYW4gRE9NLlxuLy8g4piFIE5PIFRPT0xUSVAgT04gVEhJUyBWSUVXLCBERUxJQkVSQVRFTFkuIEhpdC10ZXN0aW5nIGEgbWlsbGlvbiBwb2ludHMgbmVlZHMgYSBxdWFkdHJlZSwgYW5kIHRoZVxuLy8gb25seSBwZXItY2VsbCBhdHRyaWJ1dGUgaXMgc3RhdGUsIHdoaWNoIHRoZSBsZWdlbmQgYWxyZWFkeSBnaXZlcy4gVGhlIFwic2FtcGxlZCBjZWxsc1wiIHZpZXcga2VlcHNcbi8vIFBsb3QncyB0b29sdGlwcyBmb3IgYW55b25lIHdobyB3YW50cyB0byBpbnRlcnJvZ2F0ZSBpbmRpdmlkdWFsIHBvaW50cy5cbi8vIOKYhSBBIEZVTkNUSU9OLCBOT1QgQSBDRUxMIEhPTERJTkcgQSBET00gTk9ERS4gQXMgYSB2YWx1ZSBjZWxsIHRoaXMgcmVuZGVyZWQgYW4gb2JqZWN0LWluc3BlY3RvclxuLy8gZHVtcCBpbnN0ZWFkIG9mIHRoZSBtYXAgaW4gdGhlIGRlZmF1bHQgdmlldy4gYC8vfCBvdXRwdXQ6IGZhbHNlYCBvbmx5IGFkZHMgY2xhc3M9XCJoaWRkZW5cIiB0byB0aGVcbi8vIHdyYXBwZXI7IHRoZSBydW50aW1lIHN0aWxsIGF0dGFjaGVzIGFuIEluc3BlY3RvciB0byB0aGlzIGNlbGwgYW5kIHBhcmVudHMgdGhlIGNhbnZhcyB0aGVyZVxuLy8gRklSU1QuIFRoZSBjb25zdW1pbmcgY2VsbCB0aGVuIGZpbmRzIHZhbHVlLnBhcmVudE5vZGUgIT09IGl0cyBvd24gbm9kZSBhbmQgZmFsbHMgYmFjayB0b1xuLy8gaW5zcGVjdCh2YWx1ZSksIHByaW50aW5nIGFuIG9iamVjdC1pbnNwZWN0b3IgZHVtcC4gUmV0dXJuaW5nIGEgYnVpbGRlciBtZWFucyBlYWNoIGNvbnN1bWVyIGdldHMgYVxuLy8gZnJlc2ggbm9kZSB0aGF0IG5vdGhpbmcgZWxzZSBoYXMgYWRvcHRlZC5cbmNhbnZhc01hcCA9IGZ1bmN0aW9uICgpIHtcbiAgY29uc3QgVyA9IDcyMCwgSCA9IDQ0MCwgUEFEID0gOCwgUiA9IDAuODtcbiAgY29uc3QgZHByID0gTWF0aC5taW4od2luZG93LmRldmljZVBpeGVsUmF0aW8gfHwgMSwgMik7XG4gIGNvbnN0IHdyYXAgPSBodG1sYDxkaXYgc3R5bGU9XCJkaXNwbGF5OmZsZXg7Z2FwOjEycHg7YWxpZ24taXRlbXM6ZmxleC1zdGFydFwiPjwvZGl2PmA7XG4gIGNvbnN0IGN2ID0gaHRtbGA8Y2FudmFzIHdpZHRoPSR7VyAqIGRwcn0gaGVpZ2h0PSR7SCAqIGRwcn1cbiAgICAgICAgICAgICAgICAgICAgc3R5bGU9XCJ3aWR0aDoke1d9cHg7aGVpZ2h0OiR7SH1weFwiPjwvY2FudmFzPmA7XG4gIGNvbnN0IGN0eCA9IGN2LmdldENvbnRleHQoXCIyZFwiKTtcbiAgY3R4LnNjYWxlKGRwciwgZHByKTtcblxuICBsZXQgeDAgPSBJbmZpbml0eSwgeDEgPSAtSW5maW5pdHksIHkwID0gSW5maW5pdHksIHkxID0gLUluZmluaXR5O1xuICBmb3IgKGxldCBpID0gMDsgaSA8IHB0cy5uOyBpKyspIHtcbiAgICBpZiAocHRzLnhbaV0gPCB4MCkgeDAgPSBwdHMueFtpXTsgaWYgKHB0cy54W2ldID4geDEpIHgxID0gcHRzLnhbaV07XG4gICAgaWYgKHB0cy55W2ldIDwgeTApIHkwID0gcHRzLnlbaV07IGlmIChwdHMueVtpXSA+IHkxKSB5MSA9IHB0cy55W2ldO1xuICB9XG4gIGNvbnN0IHN4ID0gKFcgLSAyICogUEFEKSAvICh4MSAtIHgwKSwgc3kgPSAoSCAtIDIgKiBQQUQpIC8gKHkxIC0geTApO1xuICBjb25zdCBrID0gTWF0aC5taW4oc3gsIHN5KTtcbiAgY29uc3Qgb3ggPSBQQUQgKyAoKFcgLSAyICogUEFEKSAtICh4MSAtIHgwKSAqIGspIC8gMjtcbiAgY29uc3Qgb3kgPSBQQUQgKyAoKEggLSAyICogUEFEKSAtICh5MSAtIHkwKSAqIGspIC8gMjtcbiAgY29uc3QgY29sb3VyID0gaSA9PiBzdGF0ZUNvbG91cnNbaV07ICAgLy8gTk9UIHRhYmxlYXUxMFtpJTEwXTogdGhhdCB3cmFwcGVkIDkgb2YgMTkgc3RhdGVzXG5cbiAgY3R4Lmdsb2JhbEFscGhhID0gMC41NTtcbiAgZm9yIChjb25zdCBjb2RlIG9mIGRyYXdPcmRlcikgeyAgICAgICAgICAgIC8vIGNvbW1vbmVzdCBmaXJzdCwgc28gcmFyZSBzdGF0ZXMgbGFuZCBvbiB0b3BcbiAgICBjdHguZmlsbFN0eWxlID0gY29sb3VyKGNvZGUpO1xuICAgIGN0eC5iZWdpblBhdGgoKTtcbiAgICBmb3IgKGxldCBpID0gMDsgaSA8IHB0cy5uOyBpKyspIHtcbiAgICAgIGlmIChwdHMuc1tpXSAhPT0gY29kZSkgY29udGludWU7XG4gICAgICBjb25zdCBweCA9IG94ICsgKHB0cy54W2ldIC0geDApICogaywgcHkgPSBIIC0gKG95ICsgKHB0cy55W2ldIC0geTApICogayk7XG4gICAgICBjdHgubW92ZVRvKHB4LCBweSk7IGN0eC5hcmMocHgsIHB5LCBSLCAwLCA2LjI4MzIpO1xuICAgIH1cbiAgICBjdHguZmlsbCgpO1xuICB9XG5cbiAgY29uc3QgbGVnZW5kID0gaHRtbGA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOjExcHg7bGluZS1oZWlnaHQ6MS41O21heC13aWR0aDoxODBweFwiPlxuICAgICR7ZHJhd09yZGVyLm1hcChjb2RlID0+IGh0bWxgPGRpdj48c3BhbiBzdHlsZT1cImRpc3BsYXk6aW5saW5lLWJsb2NrO3dpZHRoOi42NWVtO2hlaWdodDouNjVlbTtcbiAgICAgIGJhY2tncm91bmQ6JHtjb2xvdXIoY29kZSl9O21hcmdpbi1yaWdodDouNGVtO2JvcmRlci1yYWRpdXM6MnB4XCI+PC9zcGFuPiR7c3RhdGVOYW1lc1tjb2RlXX08L2Rpdj5gKX1cbiAgPC9kaXY+YDtcbiAgd3JhcC5hcHBlbmQoY3YsIGxlZ2VuZCk7XG4gIHJldHVybiB3cmFwO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0xMCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InN0YXRlbW9kZSA9PT0gXCJhbGwgY2VsbHMgKHBvaW50cylcIlxuICA/IGNhbnZhc01hcCgpXG4gIDogUGxvdC5wbG90KHtcbiAgICAgIGhlaWdodDogNDQwLCBtYXJnaW46IDgsIG1hcmdpblJpZ2h0OiAxNzUsXG4gICAgICB4OiB7YXhpczogbnVsbH0sIHk6IHtheGlzOiBudWxsfSxcbiAgICAgIC8vIOKYhSBFWFBMSUNJVCBkb21haW4rcmFuZ2UgSVMgUkVRVUlSRUQuIFBsb3QncyBkZWZhdWx0IGNhdGVnb3JpY2FsIHNjaGVtZSBpcyB0YWJsZWF1MTAsIHNvXG4gICAgICAvLyBsZWF2aW5nIHRoaXMgaW1wbGljaXQgcmVwcm9kdWNlcyB0aGUgc2FtZSAxOS1vbnRvLTEwIGNvbGxpc2lvbiB0aGUgY2FudmFzIGhhZC5cbiAgICAgIGNvbG9yOiB7bGVnZW5kOiB0cnVlLCBjb2x1bW5zOiAxLCBsYWJlbDogXCJzdGF0ZVwiLFxuICAgICAgICAgICAgICAgZG9tYWluOiBzdGF0ZU5hbWVzLCByYW5nZTogc3RhdGVDb2xvdXJzfSxcbiAgICAgIG1hcmtzOiBbIHN0YXRlbW9kZSA9PT0gXCJzYW1wbGVkIGNlbGxzXCJcbiAgICAgICAgPyBQbG90LmRvdCh1bWFwLCB7eDogXCJVTUFQXzFcIiwgeTogXCJVTUFQXzJcIiwgZmlsbDogXCJzdGF0ZVwiLCByOiAxLjEsIGZpbGxPcGFjaXR5OiAwLjc1fSlcbiAgICAgICAgLy8g4piFIEFMTCBjZWxscywgYmlubmVkLiBmaWxsT3BhY2l0eSBjYXJyaWVzIFBVUklUWSBzbyBib3VuZGFyeSBiaW5zIHJlY2VkZTogYSBoZXggdGhhdCBpc1xuICAgICAgICAvLyA1MSUgb25lIHN0YXRlIG11c3Qgbm90IHJlYWQgYXMgY29uZmlkZW50bHkgYXMgb25lIHRoYXQgaXMgMTAwJS5cbiAgICAgICAgOiBQbG90LmRvdChoZXhlcywge3g6IFwiaGV4X3hcIiwgeTogXCJoZXhfeVwiLCBmaWxsOiBcInN0YXRlXCIsIHI6IDMuMiwgc3ltYm9sOiBcImhleGFnb25cIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cm9rZTogbnVsbCwgZmlsbE9wYWNpdHk6IGQgPT4gMC4yNSArIDAuNzUgKiBkLnN0YXRlX3B1cml0eX0pXG4gICAgICBdXG4gICAgfSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMTEiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIhZ2VuZUEgPyBtZGBFbnRlciBhIGdlbmUgYWJvdmUsIG9yIHBpY2sgb25lIG9mIHRoZSBjdXJhdGVkIG1hcmtlcnMuYFxuOiB2YWxzQSA9PT0gbnVsbCA/IG1kYCoqJHtnZW5lQX0gaXMgbm90IGF2YWlsYWJsZSBvbiB0aGlzIG1hcC4qKiBTZWUgdGhlIG5vdGUgaW4gdGhlIHNpZGViYXIuYFxuOiB2YWxzQS5lbXB0eSA/IG1kYCoqJHtnZW5lQX0gaXMgbm90IGRldGVjdGVkIGluIHRoaXMgYXRsYXMuKiogSXQgaXMgaW4gdGhlIHNoYXJlZCBnZW5lIHNldCwgYnV0XG4gICAgbm8gaGV4YWdvbiBjYXJyaWVzIGEgbm9uLXplcm8gbWVhbiwgc28gdGhlcmUgaXMgbm90aGluZyB0byBjb2xvdXIuIERyYXdpbmcgaXQgd291bGQgcHJvZHVjZSBhXG4gICAgdW5pZm9ybWx5IHNoYWRlZCBtYXAgdGhhdCByZWFkcyBhcyBtb2RlcmF0ZSBleHByZXNzaW9uIGV2ZXJ5d2hlcmUuYFxuOiBQbG90LnBsb3Qoe1xuICBoZWlnaHQ6IDQ3MCwgbWFyZ2luOiA4LFxuICB4OiB7YXhpczogbnVsbH0sIHk6IHtheGlzOiBudWxsfSxcbiAgY29sb3I6IHtsZWdlbmQ6IHRydWUsIHNjaGVtZTogXCJZbEduQnVcIiwgZG9tYWluOiBbMCwgdmFsc0EucDk5XSxcbiAgICAgICAgICAgbGFiZWw6IGAke2dlbmVBfSBtZWFuIGxvZ25vcm0gKHJhbXAgdG9wID0gOTl0aCBwY3QpYH0sXG4gIG1hcmtzOiBbUGxvdC5kb3QoaGV4ZXMubWFwKChkLCBpKSA9PiAoey4uLmQsIF92OiB2YWxzQS52W2ldfSkpLFxuICAgICAgICAgICAgICAgICAgIHt4OiBcImhleF94XCIsIHk6IFwiaGV4X3lcIiwgZmlsbDogXCJfdlwiLCByOiAzLjIsXG4gICAgICAgICAgICAgICAgICAgICBzeW1ib2w6IFwiaGV4YWdvblwiLCBzdHJva2U6IG51bGwsXG4gICAgICAgICAgICAgICAgICAgICB0aXA6IHRydWUsIGNoYW5uZWxzOiB7c3RhdGU6IFwic3RhdGVcIiwgY2VsbHM6IFwibl9jZWxsc1wifX0pXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyDimIUgVFdPIElOREVQRU5ERU5UIFJBTVBTLCBBTkQgVEhFIENBUkQgU0FZUyBTTy4gU1BJQ0EncyBjb21wYXJlIHZpZXcgc2NhbGVzIGVhY2ggZ2VuZSBzZXBhcmF0ZWx5XG4vLyB0b28sIHdoaWNoIGlzIHJpZ2h0IChhIGhvdXNla2VlcGluZyBnZW5lIHdvdWxkIG90aGVyd2lzZSBmbGF0dGVuIGEgY3l0b2tpbmUpLCBidXQgaXQgbWVhbnMgdGhlXG4vLyB0d28gcGFuZWxzJyBjb2xvdXJzIGFyZSBOT1QgY29tcGFyYWJsZSB0byBlYWNoIG90aGVyLiBPbmx5IHRoZSBzcGF0aWFsIHBhdHRlcm4gaXMuXG4hZ2VuZUIgPyBtZGBFbnRlciBhIHNlY29uZCBnZW5lIHRvIGNvbXBhcmUgcGF0dGVybnMuYFxuOiB2YWxzQiA9PT0gbnVsbCA/IGdlbmVOb3RlKGdlbmVCLCB2YWxzQilcbjogdmFsc0IuZW1wdHkgPyBtZGAqKiR7Z2VuZUJ9IGlzIG5vdCBkZXRlY3RlZCBpbiB0aGlzIGF0bGFzLioqYFxuOiBQbG90LnBsb3Qoe1xuICAgICAgaGVpZ2h0OiA0NzAsIG1hcmdpbjogOCxcbiAgICAgIHg6IHtheGlzOiBudWxsfSwgeToge2F4aXM6IG51bGx9LFxuICAgICAgY29sb3I6IHtsZWdlbmQ6IHRydWUsIHNjaGVtZTogXCJZbE9yUmRcIiwgZG9tYWluOiBbMCwgdmFsc0IucDk5XSxcbiAgICAgICAgICAgICAgIGxhYmVsOiBgJHtnZW5lQn0gbWVhbiBsb2dub3JtIChvd24gc2NhbGUpYH0sXG4gICAgICBtYXJrczogW1Bsb3QuZG90KGhleGVzLm1hcCgoZCwgaSkgPT4gKHsuLi5kLCBfdjogdmFsc0IudltpXX0pKSxcbiAgICAgICAgICAgICAgICAgICAgICAge3g6IFwiaGV4X3hcIiwgeTogXCJoZXhfeVwiLCBmaWxsOiBcIl92XCIsIHI6IDMuMixcbiAgICAgICAgICAgICAgICAgICAgICAgICBzeW1ib2w6IFwiaGV4YWdvblwiLCBzdHJva2U6IG51bGwsIHRpcDogdHJ1ZSxcbiAgICAgICAgICAgICAgICAgICAgICAgICBjaGFubmVsczoge3N0YXRlOiBcInN0YXRlXCIsIGNlbGxzOiBcIm5fY2VsbHNcIn19KV1cbiAgICB9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0xMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIOKYhSBNRUFOIEFORCBERVRFQ1RJT04gUkFURSwgTk9UIEEgVklPTElOLCBhbmQgY29tcHV0ZWQgb24gQ0VMTFMgcmF0aGVyIHRoYW4gb24gdGhlIGhleGFnb25zLlxuLy8gU2luZ2xlLWNlbGwgZXhwcmVzc2lvbiBpcyB6ZXJvLWluZmxhdGVkLCBzbyBhIHZpb2xpbiBpcyBkb21pbmF0ZWQgYnkgdGhlIHplcm8gc3Bpa2UgYW5kIGl0c1xuLy8gbWVkaWFuIHJlYWRzIDAgZm9yIGdlbmUgYWZ0ZXIgZ2VuZTsgYSBzdW1tYXJ5IG92ZXIgaGV4YWdvbnMgd291bGQgYWRkaXRpb25hbGx5IHdlaWdodCBzdGF0ZXMgYnlcbi8vIGhvdyBtYW55IGJpbnMgdGhleSBvY2N1cHkgcmF0aGVyIHRoYW4gaG93IG1hbnkgY2VsbHMgdGhleSBoYXZlLiBEb3QgYXJlYSBpcyB0aGUgZnJhY3Rpb24gb2YgdGhlXG4vLyBzdGF0ZSdzIGNlbGxzIHdpdGggYW55IGRldGVjdGVkIHRyYW5zY3JpcHQsIHdoaWNoIGlzIHdoYXQgbWFrZXMgYSBsb3cgbWVhbiByZWFkYWJsZSBhcyBcImZld1xuLy8gY2VsbHMgZXhwcmVzcyBpdFwiIHJhdGhlciB0aGFuIFwiYWxsIGV4cHJlc3MgaXQgd2Vha2x5XCIuXG57XG4gIGNvbnN0IGcgPSBnZW5lQTtcbiAgLy8g4piFIEVWRVJZIEJSQU5DSCBTQVlTIFNPTUVUSElORy4gUmV0dXJuaW5nIG1kYGAgZ2F2ZSBhIFRJVExFRCwgQ09NUExFVEVMWSBCTEFOSyBjYXJkIHdoZW5ldmVyXG4gIC8vIG5vdGhpbmcgd2FzIGVudGVyZWQgb3IgdGhlIGdlbmUgd2FzIG91dHNpZGUgdGhlIHNoYXJlZCBzZXQsIHdoaWxlIHRoZSBtYXAgY2FyZCBiZXNpZGUgaXRcbiAgLy8gcHJpbnRlZCBhIG1lc3NhZ2UgZm9yIHRoZSBzYW1lIGlucHV0LiBBIGJsYW5rIGNhcmQgcmVhZHMgYXMgYSBicm9rZW4gcGFnZS5cbiAgaWYgKCFnKSByZXR1cm4gbWRgRW50ZXIgYSBnZW5lIHRvIHNlZSBob3cgaXQgaXMgZGlzdHJpYnV0ZWQgYWNyb3NzIHRoaXMgYXRsYXMncyBzdGF0ZXMuYDtcbiAgY29uc3QgZSA9IGdlbmVJZHguZ2VuZXNbZ107XG4gIGlmICghZSkgcmV0dXJuIG1kYCoqJHtnfSBpcyBub3Qgb24gdGhpcyBtYXAqKiwgc28gdGhlcmUgaXMgbm8gcGVyLXN0YXRlIHN1bW1hcnkuIFRoZSBub3RlIGluIHRoZVxuICAgIHNpZGViYXIgZXhwbGFpbnMgd2hpY2ggcmVmZXJlbmNlcyBjYXJyeSBpdC5gO1xuICAvLyDimIUgVEhFIFNBTUUgWkVSTy1XSURUSCBET01BSU4gVFJBUCBBUyBUSEUgTUFQLCBBTkQgSVQgV0FTIEZJWEVEIE9OTFkgVEhFUkUuIFdpdGggcDk5ID09IDAgdGhlXG4gIC8vIGNvbG91ciBkb21haW4gaXMgWzAsIDBdOyBkMyBtYXBzIGV2ZXJ5IHZhbHVlIHRvIHQ9MC41LCBzbyBhbiBVTkRFVEVDVEVEIGdlbmUgZHJldyBhIG1pZC1yYW1wXG4gIC8vIHRlYWwgZG90IGFuZCBhIGxlZ2VuZCByZWFkaW5nIDAuMDAwMDAwIGF0IGJvdGggZW5kcy5cbiAgaWYgKGUucDk5IDw9IDApIHJldHVybiBtZGAqKiR7Z30gaXMgbm90IGRldGVjdGVkIGluIHRoaXMgYXRsYXMqKiAoJHtcbiAgICAoMTAwICogZS5kZXRlY3QpLnRvRml4ZWQoMil9JSBvZiBjZWxscyksIHNvIHRoZXJlIGlzIG5vIGRpc3RyaWJ1dGlvbiB0byBzdW1tYXJpc2UuYDtcbiAgY29uc3QgUyA9IGdlbmVJZHguc3RhdGVzLCBuUyA9IFMubGVuZ3RoO1xuICBjb25zdCBnaSA9IGdlbmVJZHguZ2VuZV9vcmRlci5pbmRleE9mKGcpO1xuICBpZiAoZ2kgPCAwKSByZXR1cm4gbWRgKioke2d9IGhhcyBubyBwZXItc3RhdGUgc3VtbWFyeSBpbiB0aGlzIGF0bGFzKiosIHNvIHRoZXJlIGlzIG5vdGhpbmcgdG9cbiAgICBzaG93IGhlcmUuYDtcbiAgY29uc3Qgcm93cyA9IFMubWFwKChzdCwgaikgPT4gKHtcbiAgICBzdGF0ZTogc3QsXG4gICAgbWVhbjogYnlTdGF0ZVsoZ2kgKiBuUyArIGopICogMl0gLyAyNTUgKiBlLnA5OSxcbiAgICBkZXRlY3Q6IGJ5U3RhdGVbKGdpICogblMgKyBqKSAqIDIgKyAxXSAvIDI1NSxcbiAgICBuOiBnZW5lSWR4LnN0YXRlX25bal1cbiAgfSkpO1xuICByZXR1cm4gUGxvdC5wbG90KHtcbiAgICBoZWlnaHQ6IDQwICsgMjIgKiBuUywgbWFyZ2luTGVmdDogMTkwLCB3aWR0aDogNjIwLFxuICAgIHg6IHtsYWJlbDogYCR7Z30gbWVhbiBsb2dub3JtYCwgZ3JpZDogdHJ1ZX0sXG4gICAgeToge2xhYmVsOiBudWxsLCBkb21haW46IHJvd3Muc2xpY2UoKS5zb3J0KChhLCBiKSA9PiBiLm1lYW4gLSBhLm1lYW4pLm1hcChkID0+IGQuc3RhdGUpfSxcbiAgICAvLyDimIUgcmFuZ2UgU1RBUlRTIEFUIDAgc28gdGhlIGFyZWEgcmVhbGx5IGlzIHByb3BvcnRpb25hbCB0byB0aGUgZGV0ZWN0aW9uIGZyYWN0aW9uLiBXaXRoIGFcbiAgICAvLyBmbG9vciBvZiAyIGEgZ2VuZSBkZXRlY3RlZCBpbiBaRVJPIGNlbGxzIHN0aWxsIGRyZXcgYSB2aXNpYmxlIGRvdCwgYW5kIHRoZSBhcmVhIHJhdGlvcyByYW5cbiAgICAvLyAwLjA1IC8gMC4yMiAvIDAuNjAgLyAxLjAwIGFnYWluc3QgdGhlIDAgLyAwLjEwIC8gMC41MCAvIDEuMDAgdGhlIGNhcHRpb24gY2xhaW1zLlxuICAgIHI6IHtyYW5nZTogWzAsIDldLCBkb21haW46IFswLCAxXX0sXG4gICAgY29sb3I6IHtzY2hlbWU6IFwiWWxHbkJ1XCIsIGRvbWFpbjogWzAsIGUucDk5XSwgbGVnZW5kOiB0cnVlLCBsYWJlbDogXCJtZWFuXCJ9LFxuICAgIG1hcmtzOiBbXG4gICAgICBQbG90LnJ1bGVZKHJvd3MsIHt5OiBcInN0YXRlXCIsIHgxOiAwLCB4MjogXCJtZWFuXCIsIHN0cm9rZTogXCIjRTRFN0VBXCJ9KSxcbiAgICAgIFBsb3QuZG90KHJvd3MsIHt5OiBcInN0YXRlXCIsIHg6IFwibWVhblwiLCByOiBcImRldGVjdFwiLCBmaWxsOiBcIm1lYW5cIiwgc3Ryb2tlOiBcIiMzMzQwNERcIixcbiAgICAgICAgICAgICAgICAgICAgICBzdHJva2VXaWR0aDogMC41LCB0aXA6IHRydWUsXG4gICAgICAgICAgICAgICAgICAgICAgY2hhbm5lbHM6IHtcIiUgZGV0ZWN0ZWRcIjogZCA9PiAoMTAwICogZC5kZXRlY3QpLnRvRml4ZWQoMSkgKyBcIiVcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiY2VsbHMgaW4gc3RhdGVcIjogXCJuXCJ9fSlcbiAgICBdXG4gIH0pO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0xNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPHRhYmxlIGNsYXNzPVwidGFibGUgdGFibGUtc21cIj5cbjx0aGVhZD48dHI+PHRoPmxhYmVsPC90aD48dGg+Y2VsbHMgaW4gYXRsYXM8L3RoPjx0aD5ub3RlPC90aD48L3RyPjwvdGhlYWQ+XG48dGJvZHk+JHttZXRhLnBvbGVzLm1hcChwID0+IGA8dHI+XG4gIDx0ZD48c3BhbiBzdHlsZT1cImRpc3BsYXk6aW5saW5lLWJsb2NrO3dpZHRoOi43ZW07aGVpZ2h0Oi43ZW07YmFja2dyb3VuZDoke3AuY29sb3VyfTtcbiAgICAgIG1hcmdpbi1yaWdodDouNDVlbTtib3JkZXItcmFkaXVzOjJweFwiPjwvc3Bhbj48Y29kZT4ke3AubWVtYmVyX2xhYmVsfTwvY29kZT48L3RkPlxuICA8dGQ+JHtwLmF0bGFzX24gPT09IG51bGwgPyBcIuKAlFwiIDogcC5hdGxhc19uLnRvTG9jYWxlU3RyaW5nKCl9PC90ZD5cbiAgPHRkPiR7cC5ub3RlfTwvdGQ+PC90cj5gKS5qb2luKFwiXCIpfTwvdGJvZHk+PC90YWJsZT5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTE1IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibWV0YS5yb2UgPT09IG51bGxcbiAgPyBodG1sYDxwPjxlbT5Ob3QgYXBwbGljYWJsZSB0byB0aGlzIHJlZmVyZW5jZS4gSXQgaXMgYnVpbHQgZnJvbSB0dW1vciBhbmQgbWV0YXN0YXNpcyBvbmx5LCBzb1xuICAgICBldmVyeSBzdGF0ZSBzaXRzIGluIG9uZSBjb21wYXJ0bWVudCBhbmQgUm8vZSBpcyAxLjAwIGJ5IGNvbnN0cnVjdGlvbi48L2VtPjwvcD5gXG4gIDogUGxvdC5wbG90KHtcbiAgICAgIG1hcmdpbkxlZnQ6IDE1NSwgbWFyZ2luQm90dG9tOiA0MixcbiAgICAgIGhlaWdodDogNjAgKyBtZXRhLnJvZS5sZW5ndGggLyA0ICogMTcsXG4gICAgICB4OiB7bGFiZWw6IFwiY29tcGFydG1lbnRcIn0sIHk6IHtsYWJlbDogbnVsbH0sXG4gICAgICBjb2xvcjoge3R5cGU6IFwiZGl2ZXJnaW5nXCIsIHNjaGVtZTogXCJSZEJ1XCIsIHJldmVyc2U6IHRydWUsIGRvbWFpbjogWy0zLCAzXSxcbiAgICAgICAgICAgICAgbGVnZW5kOiB0cnVlLCBsYWJlbDogXCJsb2cyIFJvL2UgICAoMCA9IG5vIHByZWZlcmVuY2UpXCJ9LFxuICAgICAgbWFya3M6IFtcbiAgICAgICAgUGxvdC5jZWxsKG1ldGEucm9lLCB7eDogXCJ0aXNzdWVcIiwgeTogXCJzdGF0ZVwiLCBmaWxsOiBcImxvZzJyb2VcIixcbiAgICAgICAgICBzb3J0OiB7eTogXCItZmlsbFwifSxcbiAgICAgICAgICB0aXA6IHRydWUsIGNoYW5uZWxzOiB7XCJSby9lXCI6IFwicm9lXCIsIGNlbGxzOiBcIm9ic2VydmVkXCJ9fSksXG4gICAgICAgIC8vIOKYhSBUSElOIENFTExTIEFSRSBNQVJLRUQsIE5PVCBISURERU4uIFJvL2Ugb24gYSBmZXcgZG96ZW4gY2VsbHMgbW92ZXMgb24gbm9pc2UsIGFuZCBhXG4gICAgICAgIC8vIHNhdHVyYXRlZCBzcXVhcmUgdGhhdCByZXN0cyBvbiAxMiBjZWxscyByZWFkcyBleGFjdGx5IGxpa2Ugb25lIHJlc3Rpbmcgb24gNDAsMDAwLlxuICAgICAgICBQbG90LnRleHQobWV0YS5yb2UuZmlsdGVyKGQgPT4gZC5vYnNlcnZlZCA8IDEwMCksXG4gICAgICAgICAge3g6IFwidGlzc3VlXCIsIHk6IFwic3RhdGVcIiwgdGV4dDogKCkgPT4gXCLCt1wiLCBmaWxsOiBcImJsYWNrXCJ9KVxuICAgICAgXVxuICAgIH0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTE2IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibWV0YS5yb2UgPT09IG51bGxcbiAgPyBodG1sYDxwPjxlbT5Ob3QgYXBwbGljYWJsZTogdGhpcyByZWZlcmVuY2UgaXMgdHVtb3Itb25seSwgc28gZXZlcnkgc3RhdGUgaXMgMTAwJSB0dW1vci48L2VtPjwvcD5gXG4gIDogUGxvdC5wbG90KHtcbiAgICAgIG1hcmdpbkxlZnQ6IDE1NSwgbWFyZ2luQm90dG9tOiA0MixcbiAgICAgIGhlaWdodDogNjAgKyBtZXRhLnJvZS5sZW5ndGggLyA0ICogMTcsXG4gICAgICB4OiB7bGFiZWw6IFwiJSBvZiB0aGF0IHN0YXRlJ3MgY2VsbHNcIiwgcGVyY2VudDogZmFsc2V9LCB5OiB7bGFiZWw6IG51bGx9LFxuICAgICAgY29sb3I6IHtsZWdlbmQ6IHRydWUsIGxhYmVsOiBcImNvbXBhcnRtZW50XCJ9LFxuICAgICAgbWFya3M6IFtQbG90LmJhclgobWV0YS5yb2UsIHt4OiBcInBjdF9vZl9zdGF0ZVwiLCB5OiBcInN0YXRlXCIsIGZpbGw6IFwidGlzc3VlXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNvcnQ6IHt5OiBcIi14XCJ9LCB0aXA6IHRydWV9KSxcbiAgICAgICAgICAgICAgUGxvdC5ydWxlWChbMF0pXVxuICAgIH0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTE3IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8g4piFIFRISVMgVEFCTEUgU0hPV1MgVEhFIEFUTEFTJ1MgT1dOIExBQkVMLCBhbmQgdGhlIG1hcCBsZWdlbmQgc2hvd3MgT1VSIGRpc3BsYXkgbmFtZS4gQm90aCBhcmVcbi8vIGNvcnJlY3QgYW5kIHRoZXkgYXJlIG5vdCBhbHdheXMgdGhlIHNhbWUgc3RyaW5nOiBodUFSZGIgY2FsbHMgaXRzIG5hcnJvdyBwb2xlIFwiVHBleFwiIGluXG4vLyBjZWxsX3N1YnR5cGVfMywgd2hpbGUgZXZlcnkgbWFwIGFuZCBsZWdlbmQgaGVyZSByZW5kZXJzIGl0IFwiU0VMTCsgVHBleFwiIHRvIGRpc3Rpbmd1aXNoIGl0IGZyb21cbi8vIHRoYXQgYXRsYXMncyBzZWNvbmQgcG9sZS4gRm9yY2luZyBvbmUgc3BlbGxpbmcgd291bGQgbWlzcmVwcmVzZW50IG9uZSBzaWRlIG9yIHRoZSBvdGhlciwgc28gdGhlXG4vLyBkaWZmZXJlbmNlIGlzIHNob3duIHJhdGhlciB0aGFuIGhpZGRlbi4gUmVzb2x2ZWQgdGhyb3VnaCB0aGUgc2FtZSBjb25maWcgdGhlIGNvbG91cnMgY29tZSBmcm9tLlxuSW5wdXRzLnRhYmxlKG1ldGEuc3RhdGVzLm1hcChkID0+ICh7XG4gIC4uLmQsXG4gIHNob3duX2FzOiAoc3RhdGVOYW1lcy5pbmNsdWRlcyhkLnN0YXRlKSA/IFwiXCIgOlxuICAgICAgICAgICAgIHN0YXRlTmFtZXMuZmluZChuID0+IG4uZW5kc1dpdGgoXCIgXCIgKyBkLnN0YXRlKSB8fCBuID09PSBkLnN0YXRlKSB8fCBcIlwiKVxufSkpLCB7XG4gIGNvbHVtbnM6IFtcInN0YXRlXCIsIFwic2hvd25fYXNcIiwgXCJuX2NlbGxzXCJdLFxuICBoZWFkZXI6IHtzdGF0ZTogXCJsYWJlbCBpbiB0aGlzIGF0bGFzXCIsIHNob3duX2FzOiBcInNob3duIG9uIHRoZSBtYXAgYXNcIixcbiAgICAgICAgICAgbl9jZWxsczogXCJjZWxscyBpbiBhdGxhc1wifSxcbiAgc29ydDogXCJuX2NlbGxzXCIsIHJldmVyc2U6IHRydWVcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3N0YXRlbW9kZScpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdnZW5lJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2dlbmUyJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3F1aWNrUGljaycpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../atlases";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Preliminary research preview. Findings are not final, and there is no ground-truth Tpex label in human tumors.</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
+
+
+
+</body></html>

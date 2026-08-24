@@ -1,0 +1,66 @@
+[
+ {
+  "cohort": "GSE108989",
+  "cells": 2980,
+  "treatment": "treatment-naive",
+  "response": "no",
+  "swap_reference": 0.0,
+  "swap_algorithm": 0.43
+ },
+ {
+  "cohort": "GSE156728",
+  "cells": 90441,
+  "treatment": "treatment-naive",
+  "response": "no",
+  "swap_reference": 0.111,
+  "swap_algorithm": 0.712
+ },
+ {
+  "cohort": "GSE167036",
+  "cells": 14030,
+  "treatment": "not recorded",
+  "response": "no",
+  "swap_reference": 0.268,
+  "swap_algorithm": 0.7
+ },
+ {
+  "cohort": "GSE206325",
+  "cells": 166915,
+  "treatment": "neoadjuvant anti-PD-1",
+  "response": "yes",
+  "swap_reference": 0.067,
+  "swap_algorithm": 0.701
+ },
+ {
+  "cohort": "GSE243013",
+  "cells": 269232,
+  "treatment": "neoadjuvant anti-PD-1",
+  "response": "yes",
+  "swap_reference": 0.066,
+  "swap_algorithm": 0.577
+ },
+ {
+  "cohort": "GSE287301",
+  "cells": 66025,
+  "treatment": "treatment-naive",
+  "response": "no",
+  "swap_reference": 0.088,
+  "swap_algorithm": 0.615
+ },
+ {
+  "cohort": "LuCa",
+  "cells": 82255,
+  "treatment": "atlas, predominantly treatment-naive",
+  "response": "no",
+  "swap_reference": 0.056,
+  "swap_algorithm": 0.526
+ },
+ {
+  "cohort": "nose2026",
+  "cells": 12426,
+  "treatment": "anti-PD-1 with chemotherapy",
+  "response": "no",
+  "swap_reference": 0.077,
+  "swap_algorithm": 0.674
+ }
+]

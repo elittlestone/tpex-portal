@@ -1,0 +1,100 @@
+/* ═══════════════════════════════════════════════════════════════════════════════════════
+   Tpex Data Portal — theme RULES. Plain CSS, not SCSS, and that split is load-bearing.
+
+   ★ WHY THIS IS NOT IN tpex.scss. A Quarto `theme:` has two layers, scss:defaults (Bootstrap
+   variables) and scss:rules (literal CSS). On a page with `embed-resources: true` Quarto
+   inlines a compiled Bootstrap that carries the DEFAULTS but NOT the rules layer. Measured on
+   2026-08-20: fig3/fig4/fig7 (the three embedded dashboards) each showed 204 hits of the slate
+   #33404D from defaults and ZERO hits of `tabular-nums`, `font-weight:650` or any
+   `nav-footer{...}` rule, while the external bootstrap-*.min.css serving the other 20 pages
+   carried all three. So the three standalone dashboards silently lost every rule below.
+   A `css:` file IS inlined by embed-resources, so the rules live here and are wired next to
+   every `theme:` in _quarto.yml and in each dashboard's format block.
+
+   ★ COLOURS ARE LITERALS HERE, MIRRORING tpex.scss's variables. tpex.scss is the source; if a
+   value changes there it must change here too. They are checked against each other by
+   scripts/site/xcheck_theme.py.
+   ═══════════════════════════════════════════════════════════════════════════════════════ */
+/* ── Type ─────────────────────────────────────────────────────────────────────────────────── */
+body { font-size: 0.95rem; line-height: 1.55; }
+
+h1, h2, h3, h4 { letter-spacing: -0.01em; text-wrap: balance; }
+
+/* Digits must line up. Nearly every table on this site is a numeric comparison across */
+/* references, and proportional figures make a column of overlap coefficients hard to scan. */
+table, .cell-output, .dataframe, code, pre { font-variant-numeric: tabular-nums; }
+
+/* ── Navbar ───────────────────────────────────────────────────────────────────────────────── */
+.navbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+  box-shadow: 0 1px 3px rgba(32, 33, 36, 0.08);
+}
+.navbar-brand { font-weight: 650; letter-spacing: -0.015em; }
+
+/* ── Cards (dashboards and article pages alike) ───────────────────────────────────────────── */
+.card {
+  border: 1px solid #E4E7EA;
+  /* 4px is squarer than Bootstrap's default, so a card reads as a panel rather than a pill.
+     This note must stay in slash-star form. Two slashes do NOT open a comment in CSS: the
+     parser reads them as a declaration and discards everything through the next semicolon,
+     which silently swallowed the box-shadow below from 2026-08-20 until 2026-08-22. */
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(32, 33, 36, 0.05);
+}
+.card-header {
+  background: #FFFFFF;
+  border-bottom: 1px solid #E4E7EA;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.005em;
+  color: #33404D;
+}
+
+/* ── Tables ───────────────────────────────────────────────────────────────────────────────── */
+/* Wide numeric tables must scroll inside themselves, never push the page sideways. */
+.table-responsive, .cell-output-display > table { overflow-x: auto; }
+table { font-size: 0.88rem; }
+table th { color: #33404D; font-weight: 600; border-bottom: 1px solid #33404D !important; }
+table td, table th { padding: 0.35rem 0.6rem; }
+
+/* ── Figures ──────────────────────────────────────────────────────────────────────────────── */
+/* The manuscript plates are rendered on white. On the faintly cool page ground they need a */
+/* hairline or they bleed into it at the edges. */
+.quarto-figure img, .card img, p > img {
+  max-width: 100%;
+  height: auto;
+  background: #FFFFFF;
+  border: 1px solid #E4E7EA;
+  border-radius: 3px;
+}
+
+/* ── Code ─────────────────────────────────────────────────────────────────────────────────── */
+pre.sourceCode, div.sourceCode {
+  background: #FFFFFF;
+  border: 1px solid #E4E7EA;
+  border-radius: 3px;
+  font-size: 0.82rem;
+}
+.code-tools-button, summary { color: #5A6673; font-size: 0.82rem; }
+
+/* ── Callouts ─────────────────────────────────────────────────────────────────────────────── */
+.callout { border-radius: 3px; }
+
+/* ── Footer ───────────────────────────────────────────────────────────────────────────────── */
+/* The footer carries the preliminary-research disclaimer. It should read as a standing caveat, */
+/* not as fine print a reader's eye skips. */
+.nav-footer {
+  border-top: 1px solid #E4E7EA;
+  color: #5A6673;
+  font-size: 0.84rem;
+}
+
+/* ── OJS inputs ───────────────────────────────────────────────────────────────────────────── */
+/* The reference radios and cohort selects are the interactive surface. Bootstrap does not */
+/* style Observable's inputs at all, so they arrive as unstyled browser defaults sitting */
+/* next to styled cards. */
+.observablehq form, .ojs-in-a-box-waiting-for-module form {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-size: 0.88rem;
+}
+.observablehq label { color: #33404D; font-weight: 500; }

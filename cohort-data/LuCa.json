@@ -1,0 +1,112 @@
+{
+ "cohort": "LuCa",
+ "description": "Lung cancer extended atlas (Salcher et al., CellxGene). ...",
+ "registry": {
+  "treatment_class": "naive_dominant_atlas",
+  "icb_response_available": false,
+  "n_R": 0,
+  "n_NR": 0,
+  "sweep_status": "not swept: no checkpoint-blockade treatment recorded",
+  "treatment_display": "atlas, predominantly treatment-naive",
+  "status": "verified"
+ },
+ "n_cells": 82255,
+ "tissue": [
+  {
+   "tissue": "Tumor",
+   "node_type": "lymph node, mixed provenance",
+   "n_cells": 74496
+  },
+  {
+   "tissue": "LN",
+   "node_type": "lymph node, mixed provenance",
+   "n_cells": 4195
+  },
+  {
+   "tissue": "Other (unmapped)",
+   "node_type": "lymph node, mixed provenance",
+   "n_cells": 2657
+  },
+  {
+   "tissue": "Met",
+   "node_type": "lymph node, mixed provenance",
+   "n_cells": 907
+  }
+ ],
+ "discordance": {
+  "swap_algorithm": {
+   "containment": 0.526,
+   "n_pairs": 30
+  },
+  "swap_reference": {
+   "containment": 0.056,
+   "n_pairs": 6
+  }
+ },
+ "clinical": null,
+ "compartment": [
+  {
+   "reference": "Chu",
+   "compartment": "LN",
+   "node_type": "lymph node, mixed provenance",
+   "n_patients": 5,
+   "median_ratio": -6.136
+  },
+  {
+   "reference": "Chu",
+   "compartment": "Tumor",
+   "node_type": "lymph node, mixed provenance",
+   "n_patients": 104,
+   "median_ratio": -5.672
+  },
+  {
+   "reference": "Chu",
+   "compartment": "Met",
+   "node_type": "lymph node, mixed provenance",
+   "n_patients": 5,
+   "median_ratio": -4.891
+  },
+  {
+   "reference": "ProjecTILs",
+   "compartment": "LN",
+   "node_type": "lymph node, mixed provenance",
+   "n_patients": 5,
+   "median_ratio": -4.392
+  },
+  {
+   "reference": "ProjecTILs",
+   "compartment": "Tumor",
+   "node_type": "lymph node, mixed provenance",
+   "n_patients": 103,
+   "median_ratio": -3.602
+  },
+  {
+   "reference": "ProjecTILs",
+   "compartment": "Met",
+   "node_type": "lymph node, mixed provenance",
+   "n_patients": 6,
+   "median_ratio": -2.663
+  },
+  {
+   "reference": "huARdb",
+   "compartment": "LN",
+   "node_type": "lymph node, mixed provenance",
+   "n_patients": 13,
+   "median_ratio": -3.793
+  },
+  {
+   "reference": "huARdb",
+   "compartment": "Tumor",
+   "node_type": "lymph node, mixed provenance",
+   "n_patients": 107,
+   "median_ratio": -5.799
+  },
+  {
+   "reference": "huARdb",
+   "compartment": "Met",
+   "node_type": "lymph node, mixed provenance",
+   "n_patients": 4,
+   "median_ratio": -6.511
+  }
+ ]
+}
