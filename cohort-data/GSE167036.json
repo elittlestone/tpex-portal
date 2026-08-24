@@ -1,6 +1,6 @@
 {
  "cohort": "GSE167036",
- "description": "Breast cancer primary tumor + paired metastatic (axillary) lymph node cohort (Liu et al. ...",
+ "description": "Breast cancer primary tumor + paired metastatic (axillary) lymph node cohort (Liu et al. 2022, Nat Commun).",
  "registry": {
   "treatment_class": "unrecorded",
   "icb_response_available": false,

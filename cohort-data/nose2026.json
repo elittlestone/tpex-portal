@@ -1,6 +1,6 @@
 {
  "cohort": "nose2026",
- "description": "Nose et al. ...",
+ "description": "Nose et al. 2026 gastric-cancer CD3+ T-cell cohort (CELLxGENE deposit).",
  "registry": {
   "treatment_class": "chemo-IO_antiPD1+chemo",
   "icb_response_available": false,
@@ -11,28 +11,7 @@
   "status": "verified"
  },
  "n_cells": 12426,
- "tissue": [
-  {
-   "tissue": "LN",
-   "node_type": "lymph node, mixed and treated",
-   "n_cells": 22460
-  },
-  {
-   "tissue": "Blood",
-   "node_type": "lymph node, mixed and treated",
-   "n_cells": 12798
-  },
-  {
-   "tissue": "Tumor",
-   "node_type": "lymph node, mixed and treated",
-   "n_cells": 7287
-  },
-  {
-   "tissue": "Met",
-   "node_type": "lymph node, mixed and treated",
-   "n_cells": 3153
-  }
- ],
+ "tissue": null,
  "tissue_note": "Tissue breakdown withheld: the composition table totals 45,698 cells against 12,426 in this cohort's gated CD8 substrate, so its bars are not a CD8 breakdown. ",
  "discordance": {
   "swap_algorithm": {

@@ -1,6 +1,6 @@
 {
  "cohort": "GSE108989",
- "description": "CRC T cells (CD4+CD8 mix, Zhang et al. ...",
+ "description": "CRC T cells (CD4+CD8 mix, Zhang et al. 2018).",
  "registry": {
   "treatment_class": "naive",
   "icb_response_available": false,

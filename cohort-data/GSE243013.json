@@ -1,6 +1,6 @@
 {
  "cohort": "GSE243013",
- "description": "NSCLC anti-PD1 cohort (Liu et al. ...",
+ "description": "NSCLC anti-PD1 cohort (Liu et al. 2024).",
  "registry": {
   "treatment_class": "neoadjuvant_ICB_antiPD1",
   "icb_response_available": true,

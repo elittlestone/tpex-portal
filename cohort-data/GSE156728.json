@@ -1,6 +1,6 @@
 {
  "cohort": "GSE156728",
- "description": "Pan-cancer CD4+CD8 atlas (Zheng et al. ...",
+ "description": "Pan-cancer CD4+CD8 atlas (Zheng et al. 2021).",
  "registry": {
   "treatment_class": "naive",
   "icb_response_available": false,

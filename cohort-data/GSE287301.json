@@ -1,6 +1,6 @@
 {
  "cohort": "GSE287301",
- "description": "HNSCC tumor T cells with paired single-cell TCR, 28 patients (McCord et al. ...",
+ "description": "HNSCC tumor T cells with paired single-cell TCR, 28 patients (McCord et al. 2026, Sci Immunol). ...",
  "registry": {
   "treatment_class": "naive",
   "icb_response_available": false,

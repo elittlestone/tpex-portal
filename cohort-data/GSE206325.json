@@ -1,6 +1,6 @@
 {
  "cohort": "GSE206325",
- "description": "HCC neoadjuvant anti-PD1 CITE-seq study (Magen et al. ...",
+ "description": "HCC neoadjuvant anti-PD1 CITE-seq study (Magen et al. 2023, Nat Med).",
  "registry": {
   "treatment_class": "neoadjuvant_ICB_antiPD1",
   "icb_response_available": true,
