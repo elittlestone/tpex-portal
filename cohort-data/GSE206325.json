@@ -44,8 +44,8 @@
    "n_R": 7,
    "n_NR": 15,
    "ratio_auc": 0.229,
-   "ratio_p": 0.047,
-   "ratio_q": 0.06,
+   "ratio_p": "0.047",
+   "ratio_q": "0.06",
    "direction": "NR-higher"
   },
   {
@@ -53,8 +53,8 @@
    "n_R": 7,
    "n_NR": 15,
    "ratio_auc": 0.2,
-   "ratio_p": 0.029,
-   "ratio_q": 0.043,
+   "ratio_p": "0.029",
+   "ratio_q": "0.043",
    "direction": "NR-higher"
   },
   {
@@ -62,8 +62,8 @@
    "n_R": 7,
    "n_NR": 15,
    "ratio_auc": 0.271,
-   "ratio_p": 0.098,
-   "ratio_q": 0.11,
+   "ratio_p": "0.098",
+   "ratio_q": "0.11",
    "direction": "NR-higher"
   },
   {
@@ -71,8 +71,8 @@
    "n_R": 7,
    "n_NR": 15,
    "ratio_auc": 0.133,
-   "ratio_p": 0.005,
-   "ratio_q": 0.011,
+   "ratio_p": "0.0051",
+   "ratio_q": "0.011",
    "direction": "NR-higher"
   }
  ],

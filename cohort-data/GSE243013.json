@@ -28,8 +28,8 @@
    "n_R": 123,
    "n_NR": 104,
    "ratio_auc": 0.615,
-   "ratio_p": 0.003,
-   "ratio_q": 0.008,
+   "ratio_p": "0.0028",
+   "ratio_q": "0.0085",
    "direction": "R-higher"
   },
   {
@@ -37,8 +37,8 @@
    "n_R": 123,
    "n_NR": 104,
    "ratio_auc": 0.553,
-   "ratio_p": 0.167,
-   "ratio_q": 0.167,
+   "ratio_p": "0.17",
+   "ratio_q": "0.17",
    "direction": "R-higher"
   },
   {
@@ -46,8 +46,8 @@
    "n_R": 123,
    "n_NR": 104,
    "ratio_auc": 0.661,
-   "ratio_p": 0.0,
-   "ratio_q": 0.0,
+   "ratio_p": "2.9e-05",
+   "ratio_q": "0.00026",
    "direction": "R-higher",
    "ms_note": "Reported but NOT interpreted in the manuscript: 206 of these 227 patients carry no cell of this pole, so the ratio is a function of its denominator rather than a progenitor measure. "
   },
@@ -56,8 +56,8 @@
    "n_R": 123,
    "n_NR": 104,
    "ratio_auc": 0.65,
-   "ratio_p": 0.0,
-   "ratio_q": 0.0,
+   "ratio_p": "0.0001",
+   "ratio_q": "0.00047",
    "direction": "R-higher"
   },
   {
@@ -65,8 +65,8 @@
    "n_R": 119,
    "n_NR": 96,
    "ratio_auc": 0.597,
-   "ratio_p": 0.014,
-   "ratio_q": 0.026,
+   "ratio_p": "0.014",
+   "ratio_q": "0.026",
    "direction": "R-higher"
   }
  ],
